@@ -1,30 +1,40 @@
 import "./HomePage.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../util/firebaseConfig";
+import { getCurrentUser } from "../../util/auth";
 import SignOutButton from "../SignOutButton/SignOutButton";
+import { getUserData } from "../../util/database";
+import ViewPartyPoolButton from "../ViewPartyPoolButton/ViewPartyPoolButton";
+import JoinPartyButton from "../JoinPartyButton/JoinPartyButton";
+
+
 
 function HomePage() {
   const navigate = useNavigate();
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const user = getCurrentUser();
       if (!user) {
         navigate("/login");
       }else{
         if (!user.emailVerified) {
           // Redirect to login page if user is not signed in
           navigate("/login");
+        }else{
+            getUserData(user.uid).then((snapshot) => {
+                setUserData(snapshot);
+            })
+            
         }
       }
-    });
-    return unsubscribe;
   });
 
   return (
     <div className="max-w-md mx-auto">
       <h1 className="text-3xl font-bold text-center my-8">Logged in!</h1>
+      <p>{userData?.email}</p>
+      {userData?.partyId ? <ViewPartyPoolButton partyId={userData?.partyId}/> : <JoinPartyButton/>}
       <SignOutButton />
     </div>
   );

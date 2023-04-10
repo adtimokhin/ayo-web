@@ -67,4 +67,9 @@ const sendVerificationEmail = async () => {
 
 }
 
-export { registerUser, signInUser, signOutUser, sendVerificationEmail };
+function getCurrentUser() {
+  return auth.currentUser;
+}
+
+
+export { registerUser, signInUser, signOutUser, sendVerificationEmail, getCurrentUser };

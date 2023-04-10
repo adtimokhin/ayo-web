@@ -1,5 +1,5 @@
 import { storage } from "./firebaseConfig";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db } from "./firebaseConfig";
 import { doc, updateDoc } from "firebase/firestore";
 
@@ -11,14 +11,28 @@ async function uploadProfileImage(file, userId) {
 
   // FIXME: WE don't need to save image url!
   // Setting proprty imaageGS to point to the new image
-  //   const imageGS = `gs://bucket/images/${userId}.${file.name.split(".")[1]}`;
+    const imageName = `${userId}.${file.name.split(".")[1]}`;
 
-  //   await updateDoc(doc(db, "users", userId), {
-  //     imageGS: imageGS,
-  //   });
+    await updateDoc(doc(db, "users", userId), {
+      imageName: imageName,
+    });
 
   console.log("Uploaded a blob or file!");
   return snapshot;
 }
 
-export { uploadProfileImage };
+async function loadImage(imageName) {
+    const imageRef = ref(storage, imageName);
+    try {
+      const imageUrl = await getDownloadURL(imageRef);
+      console.log("Image URL: ", imageUrl);
+      return imageUrl;
+    } catch (error) {
+      console.error("Error loading image: ", error);
+      throw error;
+    }
+  }
+
+
+
+export { uploadProfileImage, loadImage };
