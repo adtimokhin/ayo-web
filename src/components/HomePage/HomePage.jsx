@@ -34,7 +34,7 @@ function HomePage() {
     <div className="max-w-md mx-auto">
       <h1 className="text-3xl font-bold text-center my-8">Logged in!</h1>
       <p>{userData?.email}</p>
-      {userData?.partyId ? <ViewPartyPoolButton partyId={userData?.partyId}/> : <JoinPartyButton/>}
+      {userData?.party ? <ViewPartyPoolButton /> : <JoinPartyButton/>}
       <SignOutButton />
     </div>
   );

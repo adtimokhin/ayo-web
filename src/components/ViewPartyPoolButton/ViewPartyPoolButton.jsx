@@ -1,11 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
-function ViewPartyPoolButton(props) {
+function ViewPartyPoolButton() {
     const navigate = useNavigate();
-  const partyId = props.partyId;
 
   const handleClick = () => {
-    navigate(`/pool?partyid=${partyId}`);
+    navigate(`/party-pool`);
   };
 
   return (

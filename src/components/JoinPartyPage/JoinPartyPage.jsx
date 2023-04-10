@@ -2,7 +2,14 @@ import { useRef, useEffect } from "react";
 import jsQR from "jsqr";
 import { useNavigate } from "react-router";
 import { getCurrentUser } from "../../util/auth";
-import { updateUserPartyId, checkPartyExists, checkPartyActive } from "../../util/database";
+import {
+  updateUserPartyId,
+  checkPartyExists,
+  checkPartyActive,
+  getPartyPoolByParty,
+  addUserToPartyPool,
+  getUserData,
+} from "../../util/database";
 
 function JoinPartyPage() {
   const videoRef = useRef();
@@ -54,19 +61,29 @@ function JoinPartyPage() {
               // Code is read:
               const partyId = code.data;
               // Step 1: Check that this party id actually exists
-              checkPartyActive(partyId).then((exists) => {
-                if (exists) {
+              checkPartyActive(partyId).then((party) => {
+                if (party) {
                   // Step 2: Set current user to party id.
                   updateUserPartyId(user.uid, partyId).then(() => {
-                    navigate("/home");
-                    console.log("User added to party");
+                    getPartyPoolByParty(partyId).then((pool) => {
+                        console.log('pool :>> ', pool);
+                      if (pool) {
+                        getUserData(user.uid).then((data)=>{
+                            addUserToPartyPool(pool, data).then(() => {
+                                navigate("/home");
+                                console.log("User added to party");
+                              });
+                        });
+                        
+                      }
+                    });
                   });
-                }else{
-                    console.log("This is not a partyId or you cannot join party at this time!");
+                } else {
+                  console.log(
+                    "This is not a partyId or you cannot join party at this time!"
+                  );
                 }
               });
-
-              //   console.log(code.data);
             }
           }, 1000);
           return () => clearInterval(interval);

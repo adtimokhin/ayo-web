@@ -1,5 +1,15 @@
 import { db } from "./firebaseConfig";
-import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  getDoc,
+  getDocs,
+  updateDoc,
+  where,
+  arrayUnion,
+  collection,
+  query,
+} from "firebase/firestore";
 import { uploadProfileImage } from "./storage";
 
 async function addNewUser(userCredentials, sex, sexOfInterest, photo) {
@@ -8,7 +18,6 @@ async function addNewUser(userCredentials, sex, sexOfInterest, photo) {
     email: userCredentials.email,
     sex: sex,
     sexOfInterest: sexOfInterest,
-    partyId: null,
   });
 
   await uploadProfileImage(photo, userCredentials.uid);
@@ -26,10 +35,11 @@ async function getUserData(userUID) {
   }
 }
 
-async function updateUserPartyId(userUID, partyId) {
+async function updateUserPartyId(userUID, partyID) {
   const userRef = doc(db, "users", userUID);
+  const partyRef = doc(db, "parties", partyID);
   await updateDoc(userRef, {
-    partyId: partyId,
+    party: partyRef,
   });
 }
 
@@ -52,7 +62,55 @@ async function checkPartyActive(partyId) {
   const fromDT = new Date(partyData.fromDT.seconds * 1000);
   const now = new Date();
 
-  return fromDT <= now && now <= untilDT;
+  if (fromDT <= now && now <= untilDT) {
+    return partyData;
+  }
+  return false;
 }
 
-export { addNewUser, getUserData, updateUserPartyId, checkPartyExists, checkPartyActive };
+async function getPartyPoolByParty(partyUid) {
+  const partyRef = doc(db, "parties", partyUid);
+  const poolsRef = collection(db, "pools");
+
+  const partyPoolQuery = query(poolsRef, where("party", "==", partyRef));
+  const partyPoolQuerySnapshot = await getDocs(partyPoolQuery);
+
+  const data = [];
+
+  partyPoolQuerySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    const partyPoolData = doc.data();
+    partyPoolData.uid = doc.id;
+    console.log('partyPoolData :>> ', partyPoolData);
+    data.push(partyPoolData);
+  });
+
+  return data[0];
+
+}
+
+async function addUserToPartyPool(partyPool, user) {
+  console.log('user :>> ', user);
+  const partyPoolRef = doc(db, "pools", partyPool.uid);
+  const userRef = doc(db, "users", user.uid);
+
+  if (user.sex == "male") {
+    await updateDoc(partyPoolRef, {
+      "pool.male": arrayUnion(userRef),
+    });
+  } else if (user.sex == "female") {
+    await updateDoc(partyPoolRef, {
+      "pool.female": arrayUnion(userRef),
+    });
+  }
+}
+
+export {
+  addNewUser,
+  getUserData,
+  updateUserPartyId,
+  checkPartyExists,
+  checkPartyActive,
+  getPartyPoolByParty,
+  addUserToPartyPool,
+};

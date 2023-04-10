@@ -1,6 +1,7 @@
 import HomePage from "./components/HomePage/HomePage";
 import JoinPartyPage from "./components/JoinPartyPage/JoinPartyPage";
 import LoginPage from "./components/LoginPage/LoginPage";
+import PartyPoolPage from "./components/PartyPoolPage/PartyPoolPage";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -17,6 +18,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/join-party" element={<JoinPartyPage />} />
+            <Route path="/party-pool" element={<PartyPoolPage />} />
           </Routes>
         </main>
       </BrowserRouter>
