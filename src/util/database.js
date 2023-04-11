@@ -81,16 +81,15 @@ async function getPartyPoolByParty(partyUid) {
     // doc.data() is never undefined for query doc snapshots
     const partyPoolData = doc.data();
     partyPoolData.uid = doc.id;
-    console.log('partyPoolData :>> ', partyPoolData);
+    console.log("partyPoolData :>> ", partyPoolData);
     data.push(partyPoolData);
   });
 
   return data[0];
-
 }
 
 async function addUserToPartyPool(partyPool, user) {
-  console.log('user :>> ', user);
+  console.log("user :>> ", user);
   const partyPoolRef = doc(db, "pools", partyPool.uid);
   const userRef = doc(db, "users", user.uid);
 
@@ -105,6 +104,69 @@ async function addUserToPartyPool(partyPool, user) {
   }
 }
 
+async function getUserRefsFromPoolDoc(partyPoolId, sexOfInterest) {
+  const partyPoolRef = doc(db, "pools", partyPoolId);
+  const partyPoolSnap = await getDoc(partyPoolRef);
+
+  if (partyPoolSnap.exists()) {
+    const poolData = partyPoolSnap.data().pool;
+
+    if (sexOfInterest === "male") {
+      // Return the list of male user references
+      return poolData.male;
+    } else if (sexOfInterest === "female") {
+      // Return the list of female user references
+      return poolData.female;
+    } else {
+      console.log("Invalid sexOfInterest value!");
+      return [];
+    }
+  } else {
+    console.log("No such document!");
+    return [];
+  }
+}
+
+function refToDoc(ref) {
+  const docRef = doc(db, ref.path);
+  return docRef;
+}
+
+async function addLike(likingUserId, likedUserId, poolId) {
+  const poolDocRef = doc(db, "pools", poolId);
+  const likeObj = {
+    likedBy: doc(db, "users", likingUserId),
+    liked: doc(db, "users", likedUserId),
+  };
+  await updateDoc(poolDocRef, {
+    likes: arrayUnion(likeObj),
+  });
+}
+
+async function isUserLikedByCurrentUser(currentUserUID, userUID, poolUID) {
+  const poolDocRef = doc(db, "pools", poolUID);
+  const poolDocSnapshot = await getDoc(poolDocRef);
+
+  if (poolDocSnapshot.exists()) {
+    const likes = poolDocSnapshot.data().likes;
+    if (likes && likes.length > 0) {
+      for (const like of likes) {
+        if (
+          like.likedBy.id == currentUserUID &&
+          like.liked.id == userUID
+        ) {
+          return true;
+        }
+      }
+    }
+  }
+
+  return false;
+}
+
+
+
+
 export {
   addNewUser,
   getUserData,
@@ -113,4 +175,8 @@ export {
   checkPartyActive,
   getPartyPoolByParty,
   addUserToPartyPool,
+  getUserRefsFromPoolDoc,
+  refToDoc,
+  addLike,
+  isUserLikedByCurrentUser
 };

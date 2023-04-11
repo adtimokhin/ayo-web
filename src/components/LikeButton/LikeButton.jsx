@@ -1,0 +1,29 @@
+import { getCurrentUser } from "../../util/auth";
+import { addLike } from "../../util/database";
+import { useState } from "react";
+
+function LikeButton({ userData, poolData }) {
+  const [disabled, setDisabled] = useState(false);
+  const [liked, setLiked] = useState(false);
+
+  const handleLikeClick = async () => {
+    const currentUser = getCurrentUser();
+    await addLike(currentUser.uid, userData.uid, poolData.uid);
+    setDisabled(true);
+    setLiked(true);
+  };
+
+  return (
+    <button
+      className={`py-2 px-4 rounded-lg ${
+        liked ? "bg-gray-500 cursor-default" : "bg-blue-500 hover:bg-blue-700"
+      } text-white`}
+      onClick={handleLikeClick}
+      disabled={disabled || liked}
+    >
+      {liked ? "Liked" : "Like"}
+    </button>
+  );
+}
+
+export default LikeButton;
