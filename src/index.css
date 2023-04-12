@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* For large text */
+h1 {
+  font-family: 'Montserrat Black', sans-serif;
+}
+
+/* For small text */
+p {
+  font-family: 'Open Sans', sans-serif;
+}

@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 import { getCurrentUser } from "../../util/auth";
 import {
   updateUserPartyId,
-  checkPartyExists,
   checkPartyActive,
   getPartyPoolByParty,
   addUserToPartyPool,

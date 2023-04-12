@@ -1,11 +1,13 @@
 import "./HomePage.css";
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getCurrentUser } from "../../util/auth";
-import SignOutButton from "../SignOutButton/SignOutButton";
 import { getUserData } from "../../util/database";
-import ViewPartyPoolButton from "../ViewPartyPoolButton/ViewPartyPoolButton";
-import JoinPartyButton from "../JoinPartyButton/JoinPartyButton";
+
+import SignOutButton from "../../components/SignOutButton/SignOutButton";
+import ViewPartyPoolButton from "../../components/ViewPartyPoolButton/ViewPartyPoolButton";
+import JoinPartyButton from "../../components/JoinPartyButton/JoinPartyButton";
 
 
 

@@ -8,7 +8,7 @@ import {
   refToDoc,
 } from "../../util/database";
 import { useNavigate } from "react-router";
-import PersonCard from "../PersonCard/PersonCard";
+import PersonCard from "../../components/PersonCard/PersonCard";
 
 const getPool = async (userData) => {
   const partyRef = userData.party;
@@ -25,7 +25,11 @@ const getPool = async (userData) => {
     if (personData.sexOfInterest === userData.sex) {
       // Only showing if there is a match
       // TODO: If user already has liked that user do not show them again.
-      const alreadyLiked = await isUserLikedByCurrentUser(userData.uid, userId, pool.uid)
+      const alreadyLiked = await isUserLikedByCurrentUser(
+        userData.uid,
+        userId,
+        pool.uid
+      );
       if (!alreadyLiked) {
         peopleToShow.push(<PersonCard userData={personData} poolData={pool} />);
       }

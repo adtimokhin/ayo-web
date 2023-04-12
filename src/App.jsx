@@ -1,27 +1,72 @@
-import HomePage from "./components/HomePage/HomePage";
-import JoinPartyPage from "./components/JoinPartyPage/JoinPartyPage";
-import LoginPage from "./components/LoginPage/LoginPage";
-import PartyPoolPage from "./components/PartyPoolPage/PartyPoolPage";
-import RegisterPage from "./components/RegisterPage/RegisterPage";
+import { useState } from "react";
+import ErrorMessageScreen from "./components/ErrorMessageScreen/ErrorMessageScreen";
+import Footer from "./components/Footer/Footer";
+import HomePage from "./pages/HomePage/HomePage";
+import JoinPartyPage from "./pages/JoinPartyPage/JoinPartyPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import PartyPoolPage from "./pages/PartyPoolPage/PartyPoolPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
+  const [screenMessage, setScreenMessage] = useState(null);
   return (
     <div className="App bg-[#4DD1C4]">
-      {/* Router for different pages */}
       <BrowserRouter>
-        {/* <Header /> */}
         <main>
+          {screenMessage}
           <Routes>
-            <Route exact path="/" element={<LoginPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
+            <Route
+              exact
+              path="/"
+              element={
+                <LoginPage
+                  onError={(errorMessage) => {
+                    setScreenMessage(
+                      <ErrorMessageScreen message={errorMessage} onClose={() => {
+                        setScreenMessage(null);
+                      }} />
+                    );
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <LoginPage
+                  onError={(errorMessage) => {
+                    setScreenMessage(
+                      <ErrorMessageScreen message={errorMessage} onClose={() => {
+                        setScreenMessage(null);
+                      }} />
+                    );
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <RegisterPage
+                  onError={(errorMessage) => {
+                    setScreenMessage(
+                      <ErrorMessageScreen message={errorMessage} onClose={() => {
+                        setScreenMessage(null);
+                      }} />
+                    );
+                  }}
+                />
+              }
+            />
             <Route path="/home" element={<HomePage />} />
             <Route path="/join-party" element={<JoinPartyPage />} />
             <Route path="/party-pool" element={<PartyPoolPage />} />
           </Routes>
         </main>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }

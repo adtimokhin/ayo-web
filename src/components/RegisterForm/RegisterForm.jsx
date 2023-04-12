@@ -1,18 +1,23 @@
 import React from "react";
 import "./RegisterForm.css";
-import { registerUser, sendVerificationEmail, signOutUser } from "../../util/auth";
+import {
+  registerUser,
+  sendVerificationEmail,
+  signOutUser,
+} from "../../util/auth";
 import { addNewUser } from "../../util/database";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const validateEmail = (email) => {
   const regex = /^\S+@\S+\.\S+$/;
   return regex.test(email);
 };
 
-function RegisterForm() {
+function RegisterForm(props) {
+  const onError = props.onError;
   const [error, setError] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -29,16 +34,19 @@ function RegisterForm() {
 
     // Check email format
     if (!validateEmail(email)) {
-      setError("Invalid email format");
+        onError("Invalid email format");
+    //   setError("Invalid email format");
       return;
     }
 
     // Check password fields for errors
     if (password !== verificationPassword) {
-      setError("Passwords do not match");
+        onError("Passwords do not match");
+    //   setError("Passwords do not match");
       return;
     } else if (password.length < 6) {
-      setError("Password must be at least 6 characters long");
+        onError("Password must be at least 6 characters long");
+    //   setError("Password must be at least 6 characters long");
       return;
     }
 
@@ -55,19 +63,23 @@ function RegisterForm() {
     } catch (error) {
       console.error("Error registering user:", error);
       if (error.message == "Firebase: Error (auth/email-already-in-use).") {
-        setError("Email already in use");
+        onError("Email already in use");
+        // setError("Email already in use");
       } else {
-        setError("Unknown error!");
+        onError("Unknown error!");
+        // setError("Unknown error!");
       }
     }
   };
 
   return (
     <div className="RegisterForm">
-      <h1 className="text-3xl font-bold mb-6">Register Form</h1>{" "}
       {error && <p className="text-red-500">{error}</p>}
-      <form className="space-y-4" onSubmit={handleSubmit}>
-        <div>
+      <form
+        className="space-y-4 bg-white rounded-lg p-10 flex flex-col items-center mt-16"
+        onSubmit={handleSubmit}
+      >
+        <div className="w-full">
           <label htmlFor="email" className="block font-medium mb-2">
             Email:
           </label>
@@ -76,10 +88,10 @@ function RegisterForm() {
             id="email"
             name="email"
             required
-            className="w-full border-gray-400 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring focus:ring-gray-500 focus:border-gray-500"
+            className="w-full p-2 mb-6 text-gray-700 border-b-2 border-gray-300 focus:outline-none focus:border-secondary"
           />
         </div>
-        <div>
+        <div className="w-full">
           <label htmlFor="password" className="block font-medium mb-2">
             Password:
           </label>
@@ -88,10 +100,10 @@ function RegisterForm() {
             id="password"
             name="password"
             required
-            className="w-full border-gray-400 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring focus:ring-gray-500 focus:border-gray-500"
+            className="w-full p-2 mb-6 text-gray-700 border-b-2 border-gray-300 focus:outline-none focus:border-secondary"
           />
         </div>
-        <div>
+        <div className="w-full">
           <label
             htmlFor="verificationPassword"
             className="block font-medium mb-2"
@@ -103,10 +115,10 @@ function RegisterForm() {
             id="verificationPassword"
             name="verificationPassword"
             required
-            className="w-full border-gray-400 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring focus:ring-gray-500 focus:border-gray-500"
+            className="w-full p-2 mb-6 text-gray-700 border-b-2 border-gray-300 focus:outline-none focus:border-secondary"
           />
         </div>
-        <div>
+        <div className="w-full">
           <label htmlFor="sex" className="block font-medium mb-2">
             Sex:
           </label>
@@ -114,7 +126,7 @@ function RegisterForm() {
             id="sex"
             name="sex"
             required
-            className="w-full border-gray-400 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring focus:ring-gray-500 focus:border-gray-500"
+            className="w-full p-2 mb-6 text-gray-700 border-b-2 border-gray-300 focus:outline-none focus:border-secondary"
           >
             <option value=""></option>
             <option value="male">Male</option>
@@ -122,7 +134,7 @@ function RegisterForm() {
             <option value="other">Other</option>
           </select>
         </div>
-        <div>
+        <div className="w-full">
           <label htmlFor="sexOfInterest" className="block font-medium mb-2">
             Sex of Interest:
           </label>
@@ -130,7 +142,7 @@ function RegisterForm() {
             id="sexOfInterest"
             name="sexOfInterest"
             required
-            className="w-full border-gray-400 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring focus:ring-gray-500 focus:border-gray-500"
+            className="w-full p-2 mb-6 text-gray-700 border-b-2 border-gray-300 focus:outline-none focus:border-secondary"
           >
             <option value=""></option>
             <option value="male">Male</option>
@@ -138,7 +150,7 @@ function RegisterForm() {
             <option value="other">Other</option>
           </select>
         </div>
-        <div>
+        <div className="w-full">
           <label htmlFor="picture" className="block font-medium mb-2">
             Picture:
           </label>
@@ -147,15 +159,21 @@ function RegisterForm() {
             id="picture"
             name="picture"
             accept="image/*"
-            className="w-full border-gray-400 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring focus:ring-gray-500 focus:border-gray-500"
+            className="w-full p-2 mb-6 text-gray-700 border-b-2 border-gray-300 focus:outline-none focus:border-secondary"
           />
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium"
+          className="bg-secondary text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
           Register
         </button>
+        <div className="text-sm text-blue-500 hover:underline cursor-pointer">
+          Already have an account?{" "}
+          <Link to="/login" className="">
+            Login
+          </Link>
+        </div>
       </form>
     </div>
   );

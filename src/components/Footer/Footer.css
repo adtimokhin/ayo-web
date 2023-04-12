@@ -1,0 +1,44 @@
+.bg-peach {
+  background-color: #f7a399;
+}
+
+.font-display {
+  font-family: "Montserrat Alternates", sans-serif;
+}
+
+.text-xl {
+  font-size: 2.25rem;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.w-screen {
+  width: 100vw;
+}
