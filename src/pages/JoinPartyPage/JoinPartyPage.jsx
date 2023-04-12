@@ -94,12 +94,13 @@ function JoinPartyPage() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
-      <h1 className="text-3xl font-bold mb-8">Join a Party</h1>
-      <div className="w-1/2 border-2 border-gray-500 rounded-md">
-        <video ref={videoRef} autoPlay={true} className="w-full" />
-      </div>
-    </div>
+    <div className="flex flex-col justify-center items-center h-screen bg-primary">
+  <h1 className="text-5xl font-extrabold text-peach mb-8 font-display">Scan party QR</h1>
+  <div className="w-1/2 border-2 border-peach rounded-md overflow-hidden">
+    <video ref={videoRef} autoPlay={true} className="w-full" />
+  </div>
+</div>
+
   );
 }
 

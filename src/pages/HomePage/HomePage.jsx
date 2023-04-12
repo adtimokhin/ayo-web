@@ -35,7 +35,6 @@ function HomePage() {
   return (
     <div className="h-screen flex flex-col justify-between bg-primary">
       <h1 className="pt-8 text-center font-bold text-tertiary uppercase font-display text-outline text-9xl">AYO</h1>
-      {/* <p>{userData?.email}</p> */}
       {userData?.party ? <ViewPartyPoolButton /> : <JoinPartyButton/>}
       <SignOutButton />
     </div>
