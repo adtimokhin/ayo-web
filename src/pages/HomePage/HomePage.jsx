@@ -33,9 +33,9 @@ function HomePage() {
   });
 
   return (
-    <div className="max-w-md mx-auto">
-      <h1 className="text-3xl font-bold text-center my-8">Logged in!</h1>
-      <p>{userData?.email}</p>
+    <div className="h-screen flex flex-col justify-between bg-primary">
+      <h1 className="pt-8 text-center font-bold text-tertiary uppercase font-display text-outline text-9xl">AYO</h1>
+      {/* <p>{userData?.email}</p> */}
       {userData?.party ? <ViewPartyPoolButton /> : <JoinPartyButton/>}
       <SignOutButton />
     </div>

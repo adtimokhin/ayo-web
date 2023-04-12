@@ -7,6 +7,7 @@ export default {
         primary: "#1A237E",
         secondary: "#FF1744",
         gray: "#E0E0E0",
+        peach: "#f7a399"
       },
       fontFamily: {
         display: ['"Major Mono Display"', 'monospace'],

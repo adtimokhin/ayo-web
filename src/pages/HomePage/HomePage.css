@@ -1,0 +1,5 @@
+.text-outline {
+   
+    -webkit-text-stroke: 3px  #E0E0E0;
+    -webkit-text-fill-color:#FF1744;
+  }

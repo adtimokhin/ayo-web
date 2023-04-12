@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 function ViewPartyPoolButton() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleClick = () => {
     navigate(`/party-pool`);
@@ -10,10 +10,10 @@ function ViewPartyPoolButton() {
   return (
     <div className="flex justify-center items-center">
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="bg-peach text-gray-900 font-bold py-3 px-6 rounded-lg border-2 border-gray-900 hover:bg-gray-900 hover:text-primary transition-all duration-300 ease-in-out font-body text-3xl"
         onClick={handleClick}
       >
-        See party pool
+        Join Party
       </button>
     </div>
   );
