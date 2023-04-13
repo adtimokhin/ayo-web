@@ -90,19 +90,17 @@ function PartyPoolPage() {
       </nav>
 
       {pool ? (
-        pool.length > 0 ? (
-          <div className="flex w-full items-center justify-center pt-20">
-            <div className="flex flex-wrap justify-center">{pool}</div>
-          </div>
-        ) : (
-          <div className="flex w-full items-center justify-center pt-20">
+        <div className="flex w-full items-center justify-center pt-20">
           <div className="flex flex-wrap justify-center">
-
-            <h1 className="text-gray h-screen mx-auto text-center font-display font-bold text-9xl">Party Pool is currently empty</h1>
-
+            {pool.props.children.length != 0 ? (
+              pool
+            ) : (
+              <h1 className="text-gray h-screen mx-auto text-center font-display font-bold text-9xl">
+                Party Pool is currently empty
+              </h1>
+            )}
           </div>
         </div>
-        )
       ) : (
         <LoadingPage />
       )}

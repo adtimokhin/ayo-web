@@ -9,6 +9,7 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage/LandingPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 function App() {
   const [screenMessage, setScreenMessage] = useState(null);
@@ -56,6 +57,9 @@ function App() {
             <Route path="/home" element={<HomePage />} />
             <Route path="/join-party" element={<JoinPartyPage />} />
             <Route path="/party-pool" element={<PartyPoolPage />} />
+
+            {/* This should go last */}
+            <Route path="*" element={<NotFoundPage/>} />
           </Routes>
         </main>
       </BrowserRouter>

@@ -12,13 +12,13 @@ const LandingPage = () => {
         <div className="flex justify-between">
           <Link
             to="/login"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 m-4"
+            className="bg-peach hover:bg-secondary text-white font-bold py-2 px-4 rounded mb-4 m-4"
           >
             Login
           </Link>
           <Link
             to="/register"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 m-4"
+            className="bg-peach hover:bg-secondary text-white font-bold py-2 px-4 rounded mb-4 m-4"
           >
             Register
           </Link>

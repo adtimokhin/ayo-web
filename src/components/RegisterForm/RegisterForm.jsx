@@ -169,9 +169,8 @@ function RegisterForm(props) {
           Register
         </button>
         <div className="text-sm text-blue-500 hover:underline cursor-pointer">
-          Already have an account?{" "}
           <Link to="/login" className="">
-            Login
+          Already have an account? Login
           </Link>
         </div>
       </form>
