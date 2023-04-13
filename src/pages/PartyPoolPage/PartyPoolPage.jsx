@@ -9,6 +9,7 @@ import {
 } from "../../util/database";
 import { useNavigate } from "react-router";
 import PersonCard from "../../components/PersonCard/PersonCard";
+import LoadingPage from "../../components/LoadinPage/LoadingPage";
 
 const getPool = async (userData) => {
   const partyRef = userData.party;
@@ -66,7 +67,47 @@ function PartyPoolPage() {
     fetchUserData();
   }, []);
 
-  return <div>{pool}</div>;
+  return (
+    <div className="bg-primary w-screen">
+      <nav className="bg-peach py-4 fixed top-0 w-full">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between">
+            <div>
+              <a
+                href="/"
+                className="text-primary font-bold text-lg hover:text-gray-600"
+              >
+                AYO!
+              </a>
+            </div>
+            <div>
+              <a href="/home" className="text-gray-600 hover:text-primary px-3">
+                Home
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {pool ? (
+        pool.length > 0 ? (
+          <div className="flex w-full items-center justify-center pt-20">
+            <div className="flex flex-wrap justify-center">{pool}</div>
+          </div>
+        ) : (
+          <div className="flex w-full items-center justify-center pt-20">
+          <div className="flex flex-wrap justify-center">
+
+            <h1 className="text-gray h-screen mx-auto text-center font-display font-bold text-9xl">Party Pool is currently empty</h1>
+
+          </div>
+        </div>
+        )
+      ) : (
+        <LoadingPage />
+      )}
+    </div>
+  );
 }
 
 export default PartyPoolPage;

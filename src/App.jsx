@@ -8,6 +8,7 @@ import PartyPoolPage from "./pages/PartyPoolPage/PartyPoolPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage/LandingPage";
 
 function App() {
   const [screenMessage, setScreenMessage] = useState(null);
@@ -21,15 +22,7 @@ function App() {
               exact
               path="/"
               element={
-                <LoginPage
-                  onError={(errorMessage) => {
-                    setScreenMessage(
-                      <ErrorMessageScreen message={errorMessage} onClose={() => {
-                        setScreenMessage(null);
-                      }} />
-                    );
-                  }}
-                />
+                <LandingPage/>
               }
             />
             <Route

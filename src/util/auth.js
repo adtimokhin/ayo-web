@@ -7,6 +7,7 @@ import {
 import { auth } from "./firebaseConfig";
 
 async function registerUser(email, password) {
+  console.log("registerUser envoked");
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -24,6 +25,7 @@ async function registerUser(email, password) {
 }
 
 const signInUser = async (email, password) => {
+  console.log("signInUser envoked");
   try {
     const userCredential = await signInWithEmailAndPassword(
       auth,
@@ -45,6 +47,7 @@ const signInUser = async (email, password) => {
 };
 
 const signOutUser = async () => {
+  console.log("signOutUser envoked");
   try {
     await signOut(auth);
     console.log("User signed out successfully");
@@ -55,6 +58,7 @@ const signOutUser = async () => {
 };
 
 const sendVerificationEmail = async () => {
+  console.log("sendVerificationEmail envoked");
   const user = auth.currentUser;
   try {
     console.log("SendVerificationEmail to ", user);

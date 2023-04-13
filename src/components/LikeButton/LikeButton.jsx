@@ -17,7 +17,7 @@ function LikeButton({ userData, poolData }) {
     <button
       className={`py-2 px-4 rounded-lg ${
         liked ? "bg-gray-500 cursor-default" : "bg-blue-500 hover:bg-blue-700"
-      } text-white`}
+      } text-primary bg-gray`}
       onClick={handleLikeClick}
       disabled={disabled || liked}
     >

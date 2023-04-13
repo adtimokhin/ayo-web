@@ -13,6 +13,7 @@ import {
 import { uploadProfileImage } from "./storage";
 
 async function addNewUser(userCredentials, sex, sexOfInterest, photo) {
+  console.log("addNewUser envoked");
   const user = await setDoc(doc(db, "users", userCredentials.uid), {
     uid: userCredentials.uid,
     email: userCredentials.email,
@@ -25,6 +26,7 @@ async function addNewUser(userCredentials, sex, sexOfInterest, photo) {
 }
 
 async function getUserData(userUID) {
+  console.log("getUserData envoked");
   const docSnap = await getDoc(doc(db, "users", userUID));
   if (docSnap.exists()) {
     return docSnap.data();
@@ -36,6 +38,7 @@ async function getUserData(userUID) {
 }
 
 async function updateUserPartyId(userUID, partyID) {
+  console.log("updateUserPartyId envoked");
   const userRef = doc(db, "users", userUID);
   const partyRef = doc(db, "parties", partyID);
   await updateDoc(userRef, {
@@ -44,12 +47,14 @@ async function updateUserPartyId(userUID, partyID) {
 }
 
 async function checkPartyExists(partyId) {
+  console.log("checkPartyExists envoked");
   const partyRef = doc(db, "parties", partyId);
   const partyDoc = await getDoc(partyRef);
   return partyDoc.exists();
 }
 
 async function checkPartyActive(partyId) {
+  console.log("checkPartyActive envoked");
   const partyRef = doc(db, "parties", partyId);
   const partyDoc = await getDoc(partyRef);
 
@@ -69,6 +74,7 @@ async function checkPartyActive(partyId) {
 }
 
 async function getPartyPoolByParty(partyUid) {
+  console.log("getPartyPoolByParty envoked");
   const partyRef = doc(db, "parties", partyUid);
   const poolsRef = collection(db, "pools");
 
@@ -89,7 +95,7 @@ async function getPartyPoolByParty(partyUid) {
 }
 
 async function addUserToPartyPool(partyPool, user) {
-  console.log("user :>> ", user);
+  console.log("addUserToPartyPool envoked");
   const partyPoolRef = doc(db, "pools", partyPool.uid);
   const userRef = doc(db, "users", user.uid);
 
@@ -105,6 +111,7 @@ async function addUserToPartyPool(partyPool, user) {
 }
 
 async function getUserRefsFromPoolDoc(partyPoolId, sexOfInterest) {
+  console.log("getUserRefsFromPoolDoc envoked");
   const partyPoolRef = doc(db, "pools", partyPoolId);
   const partyPoolSnap = await getDoc(partyPoolRef);
 
@@ -133,6 +140,7 @@ function refToDoc(ref) {
 }
 
 async function addLike(likingUserId, likedUserId, poolId) {
+  console.log("addLike envoked");
   const poolDocRef = doc(db, "pools", poolId);
   const likeObj = {
     likedBy: doc(db, "users", likingUserId),
@@ -144,6 +152,8 @@ async function addLike(likingUserId, likedUserId, poolId) {
 }
 
 async function isUserLikedByCurrentUser(currentUserUID, userUID, poolUID) {
+
+  console.log("isUserLikedByCurrentUser envoked");
   const poolDocRef = doc(db, "pools", poolUID);
   const poolDocSnapshot = await getDoc(poolDocRef);
 
@@ -151,10 +161,7 @@ async function isUserLikedByCurrentUser(currentUserUID, userUID, poolUID) {
     const likes = poolDocSnapshot.data().likes;
     if (likes && likes.length > 0) {
       for (const like of likes) {
-        if (
-          like.likedBy.id == currentUserUID &&
-          like.liked.id == userUID
-        ) {
+        if (like.likedBy.id == currentUserUID && like.liked.id == userUID) {
           return true;
         }
       }
@@ -163,8 +170,6 @@ async function isUserLikedByCurrentUser(currentUserUID, userUID, poolUID) {
 
   return false;
 }
-
-
 
 
 export {
@@ -178,5 +183,5 @@ export {
   getUserRefsFromPoolDoc,
   refToDoc,
   addLike,
-  isUserLikedByCurrentUser
+  isUserLikedByCurrentUser,
 };
