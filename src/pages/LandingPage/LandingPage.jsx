@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { homeDirectory } from "../../util/routing";
 
 const LandingPage = () => {
   return (
@@ -11,13 +12,13 @@ const LandingPage = () => {
       <div className="flex flex-col justify-center items-center py-12">
         <div className="flex justify-between">
           <Link
-            to="/login"
+            to={`${homeDirectory}/login`}
             className="bg-peach hover:bg-secondary text-white font-bold py-2 px-4 rounded mb-4 m-4"
           >
             Login
           </Link>
           <Link
-            to="/register"
+            to={`${homeDirectory}/register`}
             className="bg-peach hover:bg-secondary text-white font-bold py-2 px-4 rounded mb-4 m-4"
           >
             Register
