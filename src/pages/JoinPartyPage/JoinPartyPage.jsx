@@ -26,9 +26,15 @@ function JoinPartyPage() {
       // Redirect to login page if user is not signed in
       navigate(`${homeDirectory}/login`);
     } else {
+
       const constraints = {
         audio: false,
-        video: true,
+        video:
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        )
+          ? { facingMode: { exact: "environment" } }
+          : true,
       };
 
       const canvas = document.createElement("canvas");
@@ -70,7 +76,7 @@ function JoinPartyPage() {
                       if (pool) {
                         getUserData(user.uid).then((data) => {
                           addUserToPartyPool(pool, data).then(() => {
-                            navigate("/home");
+                            navigate(`${homeDirectory}/home`);
                             console.log("User added to party");
                           });
                         });

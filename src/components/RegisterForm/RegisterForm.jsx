@@ -8,6 +8,7 @@ import {
 import { addNewUser } from "../../util/database";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { homeDirectory } from "../../util/routing";
 
 const validateEmail = (email) => {
   const regex = /^\S+@\S+\.\S+$/;
@@ -34,19 +35,19 @@ function RegisterForm(props) {
 
     // Check email format
     if (!validateEmail(email)) {
-        onError("Invalid email format");
-    //   setError("Invalid email format");
+      onError("Invalid email format");
+      //   setError("Invalid email format");
       return;
     }
 
     // Check password fields for errors
     if (password !== verificationPassword) {
-        onError("Passwords do not match");
-    //   setError("Passwords do not match");
+      onError("Passwords do not match");
+      //   setError("Passwords do not match");
       return;
     } else if (password.length < 6) {
-        onError("Password must be at least 6 characters long");
-    //   setError("Password must be at least 6 characters long");
+      onError("Password must be at least 6 characters long");
+      //   setError("Password must be at least 6 characters long");
       return;
     }
 
@@ -59,7 +60,7 @@ function RegisterForm(props) {
       console.log("Snapshot registered successfully:", userDB);
 
       await signOutUser();
-      navigate("/home");
+      navigate(`${homeDirectory}/home`);
     } catch (error) {
       console.error("Error registering user:", error);
       if (error.message == "Firebase: Error (auth/email-already-in-use).") {
@@ -169,8 +170,8 @@ function RegisterForm(props) {
           Register
         </button>
         <div className="text-sm text-blue-500 hover:underline cursor-pointer">
-          <Link to="/login" className="">
-          Already have an account? Login
+          <Link to={`${homeDirectory}/login`} className="">
+            Already have an account? Login
           </Link>
         </div>
       </form>

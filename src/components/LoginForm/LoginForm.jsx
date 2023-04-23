@@ -3,6 +3,7 @@ import { useState } from "react";
 import { signInUser } from "../../util/auth";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { homeDirectory } from "../../util/routing";
 
 function LoginForm(props) {
   const [email, setEmail] = useState("");
@@ -18,7 +19,7 @@ function LoginForm(props) {
     try {
       const user = await signInUser(email, password);
       setErrorMessage("");
-      navigate("/home");
+      navigate(`${homeDirectory}/home`);
     } catch (error) {
       if (
         error.message == "Firebase: Error (auth/wrong-password)." ||
@@ -83,7 +84,7 @@ function LoginForm(props) {
         </button>
       </div>
       <div className="text-center mt-6">
-        <Link to="/register" className="text-blue-500 hover:underline">
+        <Link to={`${homeDirectory}/register`} className="text-blue-500 hover:underline">
           Don't have an account yet? Register now!
         </Link>
       </div>

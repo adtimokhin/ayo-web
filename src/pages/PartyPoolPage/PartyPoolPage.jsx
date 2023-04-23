@@ -75,14 +75,14 @@ function PartyPoolPage() {
           <div className="flex justify-between">
             <div>
               <a
-                href="/"
+                href={`${homeDirectory}/`}
                 className="text-primary font-bold text-lg hover:text-gray-600"
               >
                 AYO!
               </a>
             </div>
             <div>
-              <a href="/home" className="text-gray-600 hover:text-primary px-3">
+              <a href={`${homeDirectory}/home`} className="text-gray-600 hover:text-primary px-3">
                 Home
               </a>
             </div>
