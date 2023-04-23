@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import { homeDirectory } from "../../util/routing";
 
 function JoinPartyButton() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/join-party");
+    navigate(`${homeDirectory}/join-party`);
   };
 
   return (

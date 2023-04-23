@@ -10,6 +10,8 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import { homeDirectory } from "./util/routing";
+
 
 function App() {
   const [screenMessage, setScreenMessage] = useState(null);
@@ -21,13 +23,13 @@ function App() {
           <Routes>
             <Route
               exact
-              path="/"
+              path={`${homeDirectory}/`}
               element={
                 <LandingPage/>
               }
             />
             <Route
-              path="/login"
+              path={`${homeDirectory}/login`}
               element={
                 <LoginPage
                   onError={(errorMessage) => {
@@ -41,7 +43,7 @@ function App() {
               }
             />
             <Route
-              path="/register"
+              path={`${homeDirectory}/register`}
               element={
                 <RegisterPage
                   onError={(errorMessage) => {
@@ -54,9 +56,9 @@ function App() {
                 />
               }
             />
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/join-party" element={<JoinPartyPage />} />
-            <Route path="/party-pool" element={<PartyPoolPage />} />
+            <Route path= {`${homeDirectory}/home`} element={<HomePage />} />
+            <Route path={`${homeDirectory}/join-party`} element={<JoinPartyPage />} />
+            <Route path={`${homeDirectory}/party-pool`} element={<PartyPoolPage />} />
 
             {/* This should go last */}
             <Route path="*" element={<NotFoundPage/>} />

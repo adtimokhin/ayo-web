@@ -9,6 +9,7 @@ import {
   addUserToPartyPool,
   getUserData,
 } from "../../util/database";
+import { homeDirectory } from "../../util/routing";
 
 function JoinPartyPage() {
   const videoRef = useRef();
@@ -20,10 +21,10 @@ function JoinPartyPage() {
     user = getCurrentUser();
     console.log(user);
     if (!user) {
-      navigate("/login");
+      navigate(`${homeDirectory}/login`);
     } else if (!user.emailVerified) {
       // Redirect to login page if user is not signed in
-      navigate("/login");
+      navigate(`${homeDirectory}/login`);
     } else {
       const constraints = {
         audio: false,
@@ -65,15 +66,14 @@ function JoinPartyPage() {
                   // Step 2: Set current user to party id.
                   updateUserPartyId(user.uid, partyId).then(() => {
                     getPartyPoolByParty(partyId).then((pool) => {
-                        console.log('pool :>> ', pool);
+                      console.log("pool :>> ", pool);
                       if (pool) {
-                        getUserData(user.uid).then((data)=>{
-                            addUserToPartyPool(pool, data).then(() => {
-                                navigate("/home");
-                                console.log("User added to party");
-                              });
+                        getUserData(user.uid).then((data) => {
+                          addUserToPartyPool(pool, data).then(() => {
+                            navigate("/home");
+                            console.log("User added to party");
+                          });
                         });
-                        
                       }
                     });
                   });
@@ -93,14 +93,17 @@ function JoinPartyPage() {
     }
   }, []);
 
+  // TODO: FORCE DELETE THE LISTENER WHEN THE COMPONENT LEAVES THE SCREEN
+
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-primary">
-  <h1 className="text-5xl font-extrabold text-peach mb-8 font-display">Scan party QR</h1>
-  <div className="w-1/2 border-2 border-peach rounded-md overflow-hidden">
-    <video ref={videoRef} autoPlay={true} className="w-full" />
-  </div>
-</div>
-
+      <h1 className="text-5xl font-extrabold text-peach mb-8 font-display">
+        Scan party QR
+      </h1>
+      <div className="w-1/2 border-2 border-peach rounded-md overflow-hidden">
+        <video ref={videoRef} autoPlay={true} className="w-full" />
+      </div>
+    </div>
   );
 }
 

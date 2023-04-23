@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import { homeDirectory } from "../../util/routing";
 
 function ViewPartyPoolButton() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/party-pool`);
+    navigate(`${homeDirectory}/party-pool`);
   };
 
   return (

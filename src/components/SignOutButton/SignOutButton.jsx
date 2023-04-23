@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
 import { signOutUser } from "../../util/auth";
+import { homeDirectory } from "../../util/routing";
 
 
 function SignOutButton() {
@@ -8,7 +9,7 @@ function SignOutButton() {
   const handleSignOut = async () => {
     try {
       await signOutUser();
-      navigate("/login");
+      navigate(`${homeDirectory}/login`);
     } catch (error) {
       console.error("Error signing out user: ", error);
     }

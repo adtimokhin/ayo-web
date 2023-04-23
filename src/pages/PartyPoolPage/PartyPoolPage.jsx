@@ -10,6 +10,7 @@ import {
 import { useNavigate } from "react-router";
 import PersonCard from "../../components/PersonCard/PersonCard";
 import LoadingPage from "../../components/LoadinPage/LoadingPage";
+import { homeDirectory } from "../../util/routing";
 
 const getPool = async (userData) => {
   const partyRef = userData.party;
@@ -57,10 +58,10 @@ function PartyPoolPage() {
           setUserData(user);
           setPool(<p>{await getPool(user)}</p>);
         } else {
-          navigate("/login");
+          navigate(`${homeDirectory}/login`);
         }
       } else {
-        navigate("/login");
+        navigate(`${homeDirectory}/login`);
       }
     };
 
