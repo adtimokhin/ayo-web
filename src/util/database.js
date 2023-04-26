@@ -9,6 +9,7 @@ import {
   arrayUnion,
   collection,
   query,
+  arrayRemove
 } from "firebase/firestore";
 import { uploadProfileImage } from "./storage";
 
@@ -171,6 +172,66 @@ async function isUserLikedByCurrentUser(currentUserUID, userUID, poolUID) {
   return false;
 }
 
+async function leaveParty(userUID, partyUID){
+  console.log("leaveParty envoked");
+  console.log('userUID :>> ', userUID);
+  console.log('partyUID :>> ', partyUID);
+  // Getting user object
+  const userRef = doc(db, "users", userUID);
+  const user = await getDoc(userRef); 
+
+  if (!user){
+    console.log("User is undefined");
+    return;
+  }
+
+  // Getting party pool
+  const partyPool = await getPartyPoolByParty(partyUID);
+  if(!partyPool){
+    console.log("Party pool is undefined");
+    return;
+  }
+
+  // TODO: Remove this after finished testing
+  console.log('user :>> ', user);
+  console.log('partyPool :>> ', partyPool);
+
+  const partyPoolRef = doc(db, "pools", partyPool.uid);
+
+  // removing data from user object
+  await updateDoc(userRef,{ party: null });
+
+  // Removing data from party pool object
+  const userSex = user.data().sex;
+
+  // Removing data about user's presence at the party
+  if (userSex == "male") {
+    await updateDoc(partyPoolRef, {
+      "pool.male": arrayRemove(userRef),
+    });
+  } else if (userSex == "female") {
+    await updateDoc(partyPoolRef, {
+      "pool.female": arrayRemove(userRef),
+    });
+  }
+
+  // Removing data about user's likes
+    const likes = partyPool.likes;
+    if (likes && likes.length > 0) {
+      for (const like of likes) {
+        console.log('like :>> ', like.likedBy.id);
+        if (like.likedBy.id == userUID || like.liked.id == userUID) {
+          await updateDoc(partyPoolRef, {
+            "likes": arrayRemove(like),
+          });
+        }
+      }
+    
+  }
+
+
+}
+
 
 export {
   addNewUser,
@@ -184,4 +245,5 @@ export {
   refToDoc,
   addLike,
   isUserLikedByCurrentUser,
+  leaveParty
 };

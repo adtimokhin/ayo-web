@@ -11,6 +11,7 @@ import { useNavigate } from "react-router";
 import PersonCard from "../../components/PersonCard/PersonCard";
 import LoadingPage from "../../components/LoadinPage/LoadingPage";
 import { homeDirectory } from "../../util/routing";
+import { Link } from "react-router-dom";
 
 const getPool = async (userData) => {
   const partyRef = userData.party;
@@ -82,9 +83,12 @@ function PartyPoolPage() {
               </a>
             </div>
             <div>
-              <a href={`${homeDirectory}/home`} className="text-gray-600 hover:text-primary px-3">
+              <Link
+                to={`${homeDirectory}/home`}
+                className="text-gray-600 hover:text-primary px-3"
+              >
                 Home
-              </a>
+              </Link>
             </div>
           </div>
         </div>
