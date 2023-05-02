@@ -12,9 +12,12 @@ function LoginForm(props) {
   const navigate = useNavigate();
 
   const onError = props.onError;
+  const onLoading = props.onLoading;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    
+    onLoading();
 
     try {
       const user = await signInUser(email, password);

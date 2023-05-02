@@ -32,7 +32,7 @@ function RegisterPage() {
         onLoading={() => {
           setOverlayScreen(<LoadingOverlay />);
         }}
-        
+
         onSuccess={() => {
           setOverlayScreen(
             <MessageScreen
@@ -47,16 +47,5 @@ function RegisterPage() {
     </div>
   );
 }
-
-// onError={(errorMessage) => {
-//   setScreenMessage(
-//     <ErrorMessageScreen
-//       message={errorMessage}
-//       onClose={() => {
-//         setScreenMessage(null);
-//       }}
-//     />
-//   );
-// }}
 
 export default RegisterPage;

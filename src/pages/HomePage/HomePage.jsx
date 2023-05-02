@@ -2,7 +2,7 @@ import "./HomePage.css";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getCurrentUser } from "../../util/auth";
+import { getCurrentUser, signOutUser } from "../../util/auth";
 import { getUserData } from "../../util/database";
 
 import SignOutButton from "../../components/SignOutButton/SignOutButton";
@@ -12,26 +12,40 @@ import LoadingPage from "../../components/LoadinPage/LoadingPage";
 import { homeDirectory } from "../../util/routing";
 import LeavePartyButton from "../../components/LeavePartyButton/LeavePartyButton";
 import ErrorMessageScreen from "../../components/ErrorMessageScreen/ErrorMessageScreen";
+import MessageScreen from "../../components/MessageScreen/MessageScreen";
 
 function HomePage() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
-    if(!message){
-        const user = getCurrentUser();
-        if (!user) {
+    if (!message) {
+      const user = getCurrentUser();
+      if (!user) {
+        navigate(`${homeDirectory}/login`);
+      } else {
+        if (!user.emailVerified) {
+          // Redirect to login page if user is not signed in
           navigate(`${homeDirectory}/login`);
         } else {
-          if (!user.emailVerified) {
-            // Redirect to login page if user is not signed in
-            navigate(`${homeDirectory}/login`);
-          } else {
-            getUserData(user.uid).then((snapshot) => {
+          getUserData(user.uid)
+            .then((snapshot) => {
               setUserData(snapshot);
+            })
+            .catch((err) => {
+              setMessage(
+                <ErrorMessageScreen
+                  message={"Something went wrong... Try logging again later"}
+                  onClose={() => {
+                    signOutUser().then(()=>{
+                      navigate(`${homeDirectory}/login`);
+                    });
+                  }}
+                />
+              );
             });
-          }
+        }
       }
     }
   }, [message]);
@@ -52,9 +66,9 @@ function HomePage() {
               partyUID={userData.party.id}
               onFinish={() => {
                 setMessage(
-                  <ErrorMessageScreen
+                  <MessageScreen
                     onClose={() => {
-                      setMessage("");
+                      setMessage(null);
                     }}
                     message={"You left the party"}
                   />
