@@ -16,12 +16,15 @@ const validateEmail = (email) => {
 };
 
 function RegisterForm(props) {
+  
   const onError = props.onError;
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const onLoading = props.onLoading;
+  const onSuccess = props.onSuccess;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    onLoading();
 
     const email = event.target.elements.email.value;
     const password = event.target.elements.password.value;
@@ -60,7 +63,7 @@ function RegisterForm(props) {
       console.log("Snapshot registered successfully:", userDB);
 
       await signOutUser();
-      navigate(`${homeDirectory}/home`);
+      onSuccess();
     } catch (error) {
       console.error("Error registering user:", error);
       if (error.message == "Firebase: Error (auth/email-already-in-use).") {
@@ -75,7 +78,6 @@ function RegisterForm(props) {
 
   return (
     <div className="RegisterForm">
-      {error && <p className="text-red-500">{error}</p>}
       <form
         className="space-y-4 bg-white rounded-lg p-10 flex flex-col items-center mt-16"
         onSubmit={handleSubmit}

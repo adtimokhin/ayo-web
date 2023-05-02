@@ -42,16 +42,6 @@ function App() {
               path={`${homeDirectory}/register`}
               element={
                 <RegisterPage
-                  onError={(errorMessage) => {
-                    setScreenMessage(
-                      <ErrorMessageScreen
-                        message={errorMessage}
-                        onClose={() => {
-                          setScreenMessage(null);
-                        }}
-                      />
-                    );
-                  }}
                 />
               }
             />
