@@ -135,9 +135,9 @@ function JoinPartyPage() {
         <video ref={videoRef} autoPlay={true} className="w-full" />
       </div>
 
-      <button id="stop-button" onClick={stopVideo}>
+      {/* <button id="stop-button" onClick={stopVideo}>
         Stop
-      </button>
+      </button> */}
     </div>
   );
 }
