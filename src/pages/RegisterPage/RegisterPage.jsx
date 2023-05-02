@@ -36,7 +36,7 @@ function RegisterPage() {
         onSuccess={() => {
           setOverlayScreen(
             <MessageScreen
-              message={"You were added to the database!"}
+              message={"You were added to the database! Check your email."}
               onClose={() => {
                 navigate(`${homeDirectory}/home`);
               }}

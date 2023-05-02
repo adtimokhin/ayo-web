@@ -1,6 +1,4 @@
-import { useNavigate } from "react-router";
-import { getCurrentUser, signOutUser } from "../../util/auth";
-import { homeDirectory } from "../../util/routing";
+import { getCurrentUser } from "../../util/auth";
 import { deleteUserAccount } from "../../util/database";
 
 function DeleteAccountButton(props) {
@@ -8,16 +6,14 @@ function DeleteAccountButton(props) {
   const onSuccess = props.onSuccess;
   const onError = props.onError;
 
-
   const handleSignOut = async () => {
     try {
-        onLoading();
+      onLoading();
       // TODO: Add leave party action before deleting the account.
+      // TODO: Remove user photo
       await deleteUserAccount(getCurrentUser());
-      //   TODO: Add a message overlay
       onSuccess();
     } catch (error) {
-        //   TODO: Add an error message overlay
       console.error("Error signing out user: ", error);
       onError("Internal error");
     }

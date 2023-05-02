@@ -5,6 +5,7 @@ import MessageScreen from "../../components/MessageScreen/MessageScreen";
 import { useNavigate } from "react-router";
 import { homeDirectory } from "../../util/routing";
 import ErrorMessageScreen from "../../components/ErrorMessageScreen/ErrorMessageScreen";
+import HomeButton from "../../components/HomeButton/HomeButton";
 
 function AccountPage() {
   const [overlay, setOverlay] = useState(null);
@@ -14,8 +15,9 @@ function AccountPage() {
       {overlay}
       <h1 className="text-6xl font-display text-peach font-bold">ACCOUNT</h1>
 
+      <HomeButton />
       <DeleteAccountButton
-        onLoading={()=>setOverlay(<LoadingOverlay />)}
+        onLoading={() => setOverlay(<LoadingOverlay />)}
         onSuccess={() => {
           setOverlay(
             <MessageScreen

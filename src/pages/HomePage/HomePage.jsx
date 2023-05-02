@@ -13,6 +13,7 @@ import { homeDirectory } from "../../util/routing";
 import LeavePartyButton from "../../components/LeavePartyButton/LeavePartyButton";
 import ErrorMessageScreen from "../../components/ErrorMessageScreen/ErrorMessageScreen";
 import MessageScreen from "../../components/MessageScreen/MessageScreen";
+import ViewAccountButton from "../../components/ViewAccountButton/ViewAccountButton";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -82,6 +83,7 @@ function HomePage() {
       ) : (
         <LoadingPage />
       )}
+      <ViewAccountButton/>
       <SignOutButton />
     </div>
   );
