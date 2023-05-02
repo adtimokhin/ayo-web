@@ -9,8 +9,10 @@ import {
   arrayUnion,
   collection,
   query,
-  arrayRemove
+  arrayRemove,
+  deleteDoc,
 } from "firebase/firestore";
+import { deleteUser } from "firebase/auth";
 import { uploadProfileImage } from "./storage";
 
 async function addNewUser(userCredentials, sex, sexOfInterest, photo) {
@@ -240,6 +242,26 @@ async function leaveParty(userUID, partyUID){
 
 }
 
+async function deleteUserAccount(user) {
+  try {
+    const userId = user.uid;
+    console.log('userId :>> ', userId);
+
+    // Then, remove the user's document from the Firestore 'users' collection
+    const userDocRef = doc(db, "users", userId);
+    console.log('userDocRef :>> ', userDocRef);
+    await deleteDoc(userDocRef);
+    console.log("Document was deleted successfully");
+    
+    // First, delete the user's authentication account
+    await deleteUser(user);
+
+    console.log(`User ${userId} deleted successfully`);
+  } catch (error) {
+    console.error(`Error deleting user:`, error);
+  }
+}
+
 
 export {
   addNewUser,
@@ -253,5 +275,6 @@ export {
   refToDoc,
   addLike,
   isUserLikedByCurrentUser,
-  leaveParty
+  leaveParty,
+  deleteUserAccount
 };

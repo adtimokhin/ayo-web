@@ -11,6 +11,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import { homeDirectory } from "./util/routing";
+import AccountPage from "./pages/AccountPage/AccountPage";
 
 function App() {
   const [screenMessage, setScreenMessage] = useState(null);
@@ -40,10 +41,7 @@ function App() {
             />
             <Route
               path={`${homeDirectory}/register`}
-              element={
-                <RegisterPage
-                />
-              }
+              element={<RegisterPage />}
             />
             <Route path={`${homeDirectory}/home`} element={<HomePage />} />
             <Route
@@ -53,6 +51,10 @@ function App() {
             <Route
               path={`${homeDirectory}/party-pool`}
               element={<PartyPoolPage />}
+            />
+            <Route
+              path={`${homeDirectory}/account`}
+              element={<AccountPage />}
             />
 
             {/* This should go last */}
