@@ -66,8 +66,10 @@ function PartyPoolPage() {
       }
     };
 
-    fetchUserData();
-  }, []);
+    if (pool == null) {
+      fetchUserData();
+    }
+  }, [pool]);
 
   return (
     <div className="bg-primary w-screen">
@@ -75,12 +77,12 @@ function PartyPoolPage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between">
             <div>
-              <a
-                href={`${homeDirectory}/`}
+              <Link
+                to={`${homeDirectory}`}
                 className="text-primary font-bold text-lg hover:text-gray-600"
               >
                 AYO!
-              </a>
+              </Link>
             </div>
             <div>
               <Link

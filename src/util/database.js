@@ -143,12 +143,20 @@ function refToDoc(ref) {
 async function addLike(likingUserId, likedUserId, poolId) {
   console.log("addLike envoked");
   const poolDocRef = doc(db, "pools", poolId);
+
+  const poolDoc = await getDoc(poolDocRef);
+
+  const likesArray = poolDoc.data().likes;
+
   const likeObj = {
     likedBy: doc(db, "users", likingUserId),
     liked: doc(db, "users", likedUserId),
   };
+
+  likesArray.push(likeObj);
+
   await updateDoc(poolDocRef, {
-    likes: arrayUnion(likeObj),
+    likes: likesArray,
   });
 }
 
