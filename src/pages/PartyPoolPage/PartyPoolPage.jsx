@@ -98,11 +98,11 @@ function PartyPoolPage() {
 
       {pool ? (
         <div className="flex w-full items-center justify-center pt-20">
-          <div className="flex flex-wrap justify-center">
+          <div className="flex flex-wrap justify-center items-center h-screen">
             {pool.props.children.length != 0 ? (
               pool
             ) : (
-              <h1 className="text-gray h-screen mx-auto text-center font-display font-bold text-9xl">
+              <h1 className="text-gray w-full h-fit mx-auto text-center font-display font-bold text-6xl">
                 Party Pool is currently empty
               </h1>
             )}

@@ -12,7 +12,6 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import { homeDirectory } from "./util/routing";
 
-
 function App() {
   const [screenMessage, setScreenMessage] = useState(null);
   return (
@@ -21,22 +20,19 @@ function App() {
         <main>
           {screenMessage}
           <Routes>
-            <Route
-              exact
-              path={`${homeDirectory}/`}
-              element={
-                <LandingPage/>
-              }
-            />
+            <Route exact path={`${homeDirectory}/`} element={<LandingPage />} />
             <Route
               path={`${homeDirectory}/login`}
               element={
                 <LoginPage
                   onError={(errorMessage) => {
                     setScreenMessage(
-                      <ErrorMessageScreen message={errorMessage} onClose={() => {
-                        setScreenMessage(null);
-                      }} />
+                      <ErrorMessageScreen
+                        message={errorMessage}
+                        onClose={() => {
+                          setScreenMessage(null);
+                        }}
+                      />
                     );
                   }}
                 />
@@ -48,20 +44,29 @@ function App() {
                 <RegisterPage
                   onError={(errorMessage) => {
                     setScreenMessage(
-                      <ErrorMessageScreen message={errorMessage} onClose={() => {
-                        setScreenMessage(null);
-                      }} />
+                      <ErrorMessageScreen
+                        message={errorMessage}
+                        onClose={() => {
+                          setScreenMessage(null);
+                        }}
+                      />
                     );
                   }}
                 />
               }
             />
-            <Route path= {`${homeDirectory}/home`} element={<HomePage />} />
-            <Route path={`${homeDirectory}/join-party`} element={<JoinPartyPage />} />
-            <Route path={`${homeDirectory}/party-pool`} element={<PartyPoolPage />} />
+            <Route path={`${homeDirectory}/home`} element={<HomePage />} />
+            <Route
+              path={`${homeDirectory}/join-party`}
+              element={<JoinPartyPage />}
+            />
+            <Route
+              path={`${homeDirectory}/party-pool`}
+              element={<PartyPoolPage />}
+            />
 
             {/* This should go last */}
-            <Route path="*" element={<NotFoundPage/>} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
       </BrowserRouter>
