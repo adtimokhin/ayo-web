@@ -6,12 +6,12 @@ export default {
       colors: {
         primary: "#1A237E",
         secondary: "#FF1744",
-        gray: "#E0E0E0",
-        peach: "#f7a399"
+        gray: "#DADEED",
+        peach: "#f7a399",
       },
       fontFamily: {
-        display: ['"Major Mono Display"', 'monospace'],
-        body: ['"Open Sans"', 'sans-serif'],
+        display: ["Lalezar", "cursive"],
+        body: [ "Mulish","Montserrat Black", "sans-serif"],
       },
     },
   },

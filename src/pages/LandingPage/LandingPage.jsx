@@ -1,31 +1,38 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { homeDirectory } from "../../util/routing";
+import "./LandingPage.css";
 
 const LandingPage = () => {
   return (
-    <div className="h-screen bg-primary text-gray-800 flex flex-col justify-center items-center">
-      <h1 className="text-9xl font-bold font-display mb-4 text-gray">AYO</h1>
-      <h2 className="text-2xl font-thin font-display mb-8 text-gray">
-        Scan. Match. Act.
-      </h2>
-      <div className="flex flex-col justify-center items-center py-12">
-        <div className="flex justify-between">
+    <div className="flex flex-col justify-center items-center bg-black">
+      <div
+        className="m-4 lg:mb-[25vh] mt-[7rem] mb-[50vh]"
+        id="title--holder flex flex-col justify-center items-center"
+      >
+        <h1 className="lg:text-[16rem] text-[10rem] font-bold text-gray font-display">
+          AYO!
+        </h1>
+        <h2 className="lg:text-4xl text-3xl font-thin mb-8 text-gray">
+          Scan. Match. <span className="text-gradient">Act.</span>
+        </h2>
+      </div>
+
+      <div className="flex flex-col justify-center items-center py-12" id="button--holder">
+        <div className="button-container">
           <Link
             to={`${homeDirectory}/login`}
-            className="bg-peach hover:bg-secondary text-white font-bold py-2 px-4 rounded mb-4 m-4"
+            className="navigation-button"
           >
-            Login
+            <p className="button-text">Begin</p>
+            <i className="arrow right"></i>
+            
           </Link>
-          <Link
-            to={`${homeDirectory}/register`}
-            className="bg-peach hover:bg-secondary text-white font-bold py-2 px-4 rounded mb-4 m-4"
-          >
-            Register
-          </Link>
+
+       
+         
         </div>
       </div>
-      <p className="text-peach font-body mt-8 absolute bottom-3">v 0.0.2</p>
     </div>
   );
 };

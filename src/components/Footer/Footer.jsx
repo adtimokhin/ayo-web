@@ -3,10 +3,16 @@ import "./Footer.css";
 
 const Footer = () => {
   return (
-    <footer className="bg-peach text-white text-sm py-4 flex flex-col items-center justify-center w-screen">
-      <div className="font-display text-xl mb-2">AYO! team</div>
-      <div className="mb-2">All rights reserved.</div>
-      <a href="mailto:contact@ayo.com" className="underline">
+    <footer className="bg-black text-white text-sm py-4 flex flex-col items-center justify-center w-screen footer-box">
+      <div className="mb-10 text-gray flex flex-col items-center justify-center">
+        <p className="font-display text-3xl">AYO! team</p>
+        <p className="text-body text-sm">v 0.0.2</p>
+      </div>
+      <div className="mb-2 text-body">All rights reserved. 2022-2023</div>
+      <a
+        href="mailto:ayo-notifications@gmail.com"
+        className="underline text-body"
+      >
         Contact us
       </a>
     </footer>
