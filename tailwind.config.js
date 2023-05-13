@@ -4,10 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#D2001A",
-        secondary: "#FFDE00",
-        gray: "#FFFAE7",
-        peach: "#EFEFEF",
+        primary: "#1A237E",
+        secondary: "#FF1744",
+        gray: "#DADEED",
+        peach: "#f7a399",
       },
       fontFamily: {
         display: ["Lalezar", "cursive"],
