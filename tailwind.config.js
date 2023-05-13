@@ -5,9 +5,9 @@ export default {
     extend: {
       colors: {
         primary: "#D2001A",
-        secondary: "#FF1744",
-        gray: "#DADEED",
-        peach: "#f7a399",
+        secondary: "#FFDE00",
+        gray: "#FFFAE7",
+        peach: "#EFEFEF",
       },
       fontFamily: {
         display: ["Lalezar", "cursive"],
