@@ -12,6 +12,7 @@ import {
 import { homeDirectory } from "../../util/routing";
 import ErrorMessageScreen from "../../components/ErrorMessageScreen/ErrorMessageScreen";
 import QRReader from "../../components/QRReader/QRReader";
+import LoadingOverlay from "../../components/LoadingOverlay/LoadingOverlay";
 
 function JoinPartyPage() {
   // // TODO: add an error message telling why the user failed to join the party
@@ -201,6 +202,9 @@ function JoinPartyPage() {
 
       {displayQR ? (
         <QRReader
+          onLoad={() => {
+            setMessage(<LoadingOverlay />);
+          }}
           onError={(message) => {
             stopVideo();
             setMessage(

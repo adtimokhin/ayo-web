@@ -10,7 +10,7 @@ import {
 import { homeDirectory } from "../../util/routing";
 import { useNavigate } from "react-router";
 
-function QRReader({ onError, user, videoRef, stopVideo }) {
+function QRReader({ onError, onLoad, user, videoRef, stopVideo }) {
   const constraints = {
     audio: false,
     video:
@@ -32,7 +32,6 @@ function QRReader({ onError, user, videoRef, stopVideo }) {
       .getUserMedia(constraints)
       .then((stream) => {
         videoRef.current.srcObject = stream;
-
         const analyseInterval = setInterval(() => {
           if (videoRef.current) {
             // Drawing the video onto the screen of the user
@@ -59,26 +58,54 @@ function QRReader({ onError, user, videoRef, stopVideo }) {
               imageData.height
             );
             if (code) {
+              // Set loading screen
+              onLoad();
               // Code is read:
               const partyId = code.data;
               // Step 1: Check that this party id actually exists
               checkPartyActive(partyId).then((party) => {
                 if (party) {
                   // Step 2: Set current user to party id.
-                  updateUserPartyId(user.uid, partyId).then(() => {
-                    getPartyPoolByParty(partyId).then((pool) => {
-                      if (pool) {
-                        getUserData(user.uid).then((data) => {
-                          addUserToPartyPool(pool, data).then(() => {
-                            // Stop reading from the video stream
+                  updateUserPartyId(user.uid, partyId)
+                    .then(() => {
+                      getPartyPoolByParty(partyId)
+                        .then((pool) => {
+                          if (pool) {
+                            getUserData(user.uid)
+                              .then((data) => {
+                                addUserToPartyPool(pool, data)
+                                  .then(() => {
+                                    // Stop reading from the video stream
+                                    stopVideo();
+                                    navigate(`${homeDirectory}/home`);
+                                  })
+                                  .catch(() => {
+                                    stopVideo();
+                                    onError(
+                                      "Failed to add you to the party pool"
+                                    );
+                                  });
+                              })
+                              .catch(() => {
+                                stopVideo();
+                                onError("Failed to add you to the party pool");
+                              });
+                          } else {
                             stopVideo();
-                            navigate(`${homeDirectory}/home`);
-                          });
+                            onError("Failed to add you to the party pool");
+                          }
+                        })
+                        .catch(() => {
+                          stopVideo();
+                          onError("Failed to add you to the party pool");
                         });
-                      }
+                    })
+                    .catch(() => {
+                      stopVideo();
+                      onError("Failed to add you to the party pool");
                     });
-                  });
                 } else {
+                  stopVideo();
                   onError("This is not a valid QR Code. Try again");
                 }
               });
@@ -87,44 +114,7 @@ function QRReader({ onError, user, videoRef, stopVideo }) {
             clearInterval(analyseInterval);
           }
         }, 1000);
-        // const interval = setInterval(() => {
-        // context.drawImage(
-        //   videoRef.current,
-        //   0,
-        //   0,
-        //   canvas.width,
-        //   canvas.height
-        // );
-
-        // const code = jsQR(imageData.data, imageData.width, imageData.height);
-        // if (code) {
-        //   // Code is read:
-        //   const partyId = code.data;
-        //   // Step 1: Check that this party id actually exists
-        //   checkPartyActive(partyId).then((party) => {
-        //     if (party) {
-        //       // Step 2: Set current user to party id.
-        //       updateUserPartyId(user.uid, partyId).then(() => {
-        //         getPartyPoolByParty(partyId).then((pool) => {
-        //           if (pool) {
-        //             getUserData(user.uid).then((data) => {
-        //               addUserToPartyPool(pool, data).then(() => {
-        //                 // Stop reading from the video stream
-        //                 // FIXME: This should solution kicks in after a good 30 seconds. That is bad
-        //               });
-        //             });
-        //           }
-        //         });
-        //       });
-        //     } else {
-        //       onError("This is not a valid QR Code. Try again");
-        //     }
-        //   });
-        // }
-        // }, 1000);
-
         return () => clearInterval(analyseInterval);
-        // return () => clearInterval(interval);
       })
       .catch((e) => {
         console.log(e);
