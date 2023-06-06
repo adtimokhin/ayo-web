@@ -12,7 +12,6 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import { homeDirectory } from "./util/routing";
 import AccountPage from "./pages/AccountPage/AccountPage";
-import TestPage from "./pages/TestPage";
 
 function App() {
   const [screenMessage, setScreenMessage] = useState(null);
@@ -23,8 +22,7 @@ function App() {
           {screenMessage}
           <Routes>
             {/* TODO: Change back */}
-            {/* <Route exact path={`${homeDirectory}/`} element={<LandingPage />} /> */}
-            <Route exact path={`${homeDirectory}/`} element={<TestPage />} />
+            <Route exact path={`${homeDirectory}/`} element={<LandingPage />} />
             <Route
               path={`${homeDirectory}/login`}
               element={
