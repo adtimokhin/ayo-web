@@ -8,9 +8,9 @@ function LoginPage(props) {
   const onError = props.onError;
   const [overlayScreen, setOverlayScreen] = useState(null);
   return (
-    <div className="RegisterPage flex flex-col w-screen bg-primary justify-center items-center min-h-screen">
+    <div className="RegisterPage flex flex-col w-screen bg-[#030415] justify-center items-center min-h-screen">
       {overlayScreen}
-      <h1 className="text-6xl font-display text-white font-bold">LOGIN!</h1>
+      <h1 className="text-9xl font-display text-[#e98787] font-bold">LOGIN!</h1>
       <LoginForm
         onError={(msg) => {
           setOverlayScreen(

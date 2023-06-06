@@ -11,6 +11,7 @@ const Footer = () => {
       <div className="mb-2 text-body">All rights reserved. 2022-2023</div>
       <a
         href="mailto:ayo-notifications@gmail.com"
+        target="_blank"
         className="underline text-body"
       >
         Contact us

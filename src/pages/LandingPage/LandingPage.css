@@ -27,7 +27,7 @@ h2{
 }
 
 .navigation-button:hover {
-  color: #2B5AFE;
+  /* color: #2B5AFE; */
 }
 
 .navigation-button:active {
@@ -44,7 +44,7 @@ h2{
 }
 
 .arrow {
-  border: solid black;
+  border: solid #030415;
   background-clip: padding-box;
   /* border-image-source: linear-gradient(to left, #743ad5, #d53a9d); */
   border-width: 0 10px 11px 0;

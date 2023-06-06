@@ -4,7 +4,7 @@ import "./ErrorMessageScreen.css";
 function ErrorMessageScreen(props) {
   return (
     <div
-      className="fixed inset-0 flex justify-center items-center bg-primary bg-opacity-50 z-10"
+      className="fixed inset-0 flex justify-center items-center bg-[#11142e] bg-opacity-50 z-10"
       onClick={props.onClose}
     >
       <div className="p-6 rounded-md bg-white text-red-600 z-20">

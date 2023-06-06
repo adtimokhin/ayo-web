@@ -5,7 +5,7 @@ import "./LandingPage.css";
 
 const LandingPage = () => {
   return (
-    <div className="flex flex-col justify-center items-center bg-black">
+    <div className="flex flex-col justify-center items-center bg-[#030415]">
       <div
         className="m-4 lg:mb-[25vh] mt-[7rem] mb-[50vh]"
         id="title--holder flex flex-col justify-center items-center"
@@ -18,19 +18,15 @@ const LandingPage = () => {
         </h2>
       </div>
 
-      <div className="flex flex-col justify-center items-center py-12" id="button--holder">
+      <div
+        className="flex flex-col justify-center items-center py-12"
+        id="button--holder"
+      >
         <div className="button-container">
-          <Link
-            to={`${homeDirectory}/login`}
-            className="navigation-button"
-          >
-            <p className="button-text">Begin</p>
+          <Link to={`${homeDirectory}/login`} className="navigation-button">
+            <p className="button-text">Begin!</p>
             <i className="arrow right"></i>
-            
           </Link>
-
-       
-         
         </div>
       </div>
     </div>
