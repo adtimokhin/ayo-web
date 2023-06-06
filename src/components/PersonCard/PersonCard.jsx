@@ -21,18 +21,15 @@ function PersonCard({ userData, poolData }) {
   }, [userData.uid]);
 
   return (
-    <div className="bg-[#f5e2df] shadow-md rounded-lg p-4 lg:w-64 sm:w-full md:w-full mx-auto my-4 h-fit">
-      <div className="h-fit">
-        <div className="h-fit w-fit border-2 border-spacing-1 border-blue-500">
-          <img
-            src={imageUrl}
-            alt="Profile"
-            className="w-full h-full object-contain"
-            style={{ width: "100%", height: "auto" }}
-          />
-        </div>
+    <div className="bg-[#f5e2df] h-fit justify-self-center sm:col-span-3 lg:col-span-1">
+      <div className="h-fit min-w-[300px]">
+        <img
+          src={imageUrl}
+          alt="A photo of a person at the party!"
+          style={{ objectFit: "contain", height: "80vh" }}
+        />
       </div>
-      <div className="flex justify-center items-center h-1/4 pt-3">
+      <div className="flex justify-center items-center h-1/4 py-3">
         <LikeButton userData={userData} poolData={poolData} />
       </div>
     </div>

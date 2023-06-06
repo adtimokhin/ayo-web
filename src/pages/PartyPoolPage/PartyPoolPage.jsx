@@ -57,7 +57,7 @@ function PartyPoolPage() {
         if (currentUser.emailVerified) {
           const user = await getUserData(currentUser.uid);
           setUserData(user);
-          setPool(<p>{await getPool(user)}</p>);
+          setPool(<>{await getPool(user)}</>);
         } else {
           navigate(`${homeDirectory}/login`);
         }
@@ -76,20 +76,15 @@ function PartyPoolPage() {
       <nav className="bg-peach py-4 fixed top-0 w-full">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between">
-            <div>
-              <Link
-                to={`${homeDirectory}`}
-                className="text-primary font-bold text-lg hover:text-gray-600"
-              >
-                AYO!
-              </Link>
+            <div className="text-primary font-bold text-3xl hover:text-gray-600">
+              AYO | Party Pool
             </div>
             <div>
               <Link
                 to={`${homeDirectory}/home`}
-                className="text-gray-600 hover:text-primary px-3"
+                className="text-primary hover:text-secondary px-3 text-3xl font-bold font-body"
               >
-                Home
+                HOME
               </Link>
             </div>
           </div>
@@ -97,16 +92,17 @@ function PartyPoolPage() {
       </nav>
 
       {pool ? (
-        <div className="flex w-full items-center justify-center pt-20">
-          <div className="flex flex-wrap justify-center items-center h-screen">
-            {pool.props.children.length != 0 ? (
-              pool
-            ) : (
-              <h1 className="text-gray w-full h-fit mx-auto text-center font-display font-bold text-6xl">
-                Party Pool is currently empty
-              </h1>
-            )}
-          </div>
+        <div
+          className="w-full min-h-screen grid grid-cols-3 sm:space-y-10 lg:space-y-0 lg:space-x-4 pt-24"
+          id="card_holder"
+        >
+          {pool.props.children.length != 0 ? (
+            pool
+          ) : (
+            <h1 className="text-gray col-span-3 mx-auto text-center font-display font-bold text-6xl">
+              Party Pool is currently empty
+            </h1>
+          )}
         </div>
       ) : (
         <LoadingPage />

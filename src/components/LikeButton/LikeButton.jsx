@@ -15,13 +15,15 @@ function LikeButton({ userData, poolData }) {
 
   return (
     <button
-      className={`flex py-2 px-4 rounded-lg h-fit ${
+      className={`flex py-2 px-4 rounded-lg h-fit w-[94%] text-center ${
         liked ? "bg-gray-500 cursor-default" : "bg-[#ffa7a7] hover:bg-blue-700"
       } text-[#172aff] font-semibold text-xl`}
       onClick={handleLikeClick}
       disabled={disabled || liked}
     >
+      <p className="w-full">
       {liked ? "Liked" : "Like"}
+      </p>
     </button>
   );
 }
