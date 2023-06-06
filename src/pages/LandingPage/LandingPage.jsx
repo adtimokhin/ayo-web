@@ -7,7 +7,7 @@ const LandingPage = () => {
   return (
     <div className="flex flex-col justify-center items-center bg-[#030415]">
       <div
-        className="m-4 lg:mb-[25vh] mt-[7rem] mb-[50vh]"
+        className="m-4 sm:mb-[25vh] mt-[7rem] lg:mb-[50vh]"
         id="title--holder flex flex-col justify-center items-center"
       >
         <h1 className="lg:text-[16rem] text-[10rem] font-bold text-gray font-display">
@@ -19,7 +19,7 @@ const LandingPage = () => {
       </div>
 
       <div
-        className="flex flex-col justify-center items-center py-12"
+        className="flex flex-col justify-center items-center py-12 sm:py-4"
         id="button--holder"
       >
         <div className="button-container">

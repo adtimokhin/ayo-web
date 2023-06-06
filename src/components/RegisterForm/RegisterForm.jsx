@@ -79,7 +79,7 @@ function RegisterForm(props) {
   return (
     <div className="RegisterForm">
       <form
-        className="space-y-4 bg-white rounded-lg p-10 flex flex-col items-center mt-16"
+        className="space-y-4 bg-white rounded-lg p-10 flex flex-col items-center my-16"
         onSubmit={handleSubmit}
       >
         <div className="w-full">

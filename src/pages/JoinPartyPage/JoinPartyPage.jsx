@@ -151,10 +151,10 @@ function JoinPartyPage() {
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-primary">
       {message}
-      <h1 className="text-5xl font-extrabold text-peach mb-8 font-display">
+      <h1 className="text-5xl font-extrabold text-peach mb-8 font-display absolute top-12">
         Scan party QR
       </h1>
-      <div className="w-1/2 border-2 border-peach rounded-md overflow-hidden">
+      <div className="sm:w-screen sm:h-[400px] lg:w-1/2 border-2 border-peach rounded-md overflow-hidden">
         <video ref={videoRef} autoPlay={true} className="w-full" />
       </div>
 

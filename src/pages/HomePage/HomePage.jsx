@@ -60,7 +60,7 @@ function HomePage() {
 
       {userData ? (
         userData?.party ? (
-          <div className="space-y-4 space-x-4">
+          <div className="space-y-12">
             <ViewPartyPoolButton />
             <LeavePartyButton
               userUID={userData.uid}
