@@ -14,6 +14,7 @@ import LeavePartyButton from "../../components/LeavePartyButton/LeavePartyButton
 import ErrorMessageScreen from "../../components/ErrorMessageScreen/ErrorMessageScreen";
 import MessageScreen from "../../components/MessageScreen/MessageScreen";
 import ViewAccountButton from "../../components/ViewAccountButton/ViewAccountButton";
+import LoadingOverlay from "../../components/LoadingOverlay/LoadingOverlay";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ function HomePage() {
                 <ErrorMessageScreen
                   message={"Something went wrong... Try logging again later"}
                   onClose={() => {
-                    signOutUser().then(()=>{
+                    signOutUser().then(() => {
                       navigate(`${homeDirectory}/login`);
                     });
                   }}
@@ -75,6 +76,9 @@ function HomePage() {
                   />
                 );
               }}
+              onLoad={() => {
+                setMessage(<LoadingOverlay />);
+              }}
             />
           </div>
         ) : (
@@ -83,7 +87,7 @@ function HomePage() {
       ) : (
         <LoadingPage />
       )}
-      <ViewAccountButton/>
+      <ViewAccountButton />
       <SignOutButton />
     </div>
   );
