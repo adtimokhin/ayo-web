@@ -7,7 +7,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import PartyPoolPage from "./pages/PartyPoolPage/PartyPoolPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import { homeDirectory } from "./util/routing";
@@ -17,12 +17,12 @@ function App() {
   const [screenMessage, setScreenMessage] = useState(null);
   return (
     <div className="App bg-[#4DD1C4]">
-      <BrowserRouter>
+      <HashRouter>
         <main>
           {screenMessage}
           <Routes>
             {/* TODO: Change back */}
-            <Route exact path={`${homeDirectory}/`} element={<LandingPage />} />
+            <Route exact index element={<LandingPage />} />
             <Route
               path={`${homeDirectory}/login`}
               element={
@@ -62,7 +62,7 @@ function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
-      </BrowserRouter>
+      </HashRouter>
       <Footer />
     </div>
   );
