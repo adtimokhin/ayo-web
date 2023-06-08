@@ -29,9 +29,7 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 
 const appCheck = initializeAppCheck(app, {
-  provider: new ReCaptchaV3Provider(
-    "Lpod028bvbDJKu3jp@*6hsTethhsh262tgne94578n4"
-  ),
+  provider: new ReCaptchaV3Provider("6Leg-HsmAAAAAPjsdez_QEa0MOkXYpNd0nGejXPl"),
 
   // Optional argument. If true, the SDK automatically refreshes App Check
   // tokens as needed.

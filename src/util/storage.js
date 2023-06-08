@@ -11,28 +11,23 @@ async function uploadProfileImage(file, userId) {
 
   // FIXME: WE don't need to save image url!
   // Setting proprty imaageGS to point to the new image
-    const imageName = `${userId}.${file.name.split(".")[1]}`;
+  const imageName = `${userId}.${file.name.split(".")[1]}`;
 
-    await updateDoc(doc(db, "users", userId), {
-      imageName: imageName,
-    });
+  await updateDoc(doc(db, "users", userId), {
+    imageName: imageName,
+  });
 
-  console.log("Uploaded a blob or file!");
   return snapshot;
 }
 
 async function loadImage(imageName) {
-    const imageRef = ref(storage, imageName);
-    try {
-      const imageUrl = await getDownloadURL(imageRef);
-      console.log("Image URL: ", imageUrl);
-      return imageUrl;
-    } catch (error) {
-      console.error("Error loading image: ", error);
-      throw error;
-    }
+  const imageRef = ref(storage, imageName);
+  try {
+    const imageUrl = await getDownloadURL(imageRef);
+    return imageUrl;
+  } catch (error) {
+    throw error;
   }
-
-
+}
 
 export { uploadProfileImage, loadImage };
