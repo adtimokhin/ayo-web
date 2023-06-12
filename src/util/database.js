@@ -131,26 +131,26 @@ function refToDoc(ref) {
 }
 
 async function addLike(likingUserId, likedUserId, poolId) {
-  const poolDocRef = doc(db, "pools", poolId);
+  const functionUrl =
+    "https://us-central1-ayo-cc0f7.cloudfunctions.net/incrementLikeCount";
 
-  const poolDoc = await getDoc(poolDocRef);
-
-  const likesArray = poolDoc.data().likes;
-
-  const likeObj = {
-    likedBy: doc(db, "users", likingUserId),
-    liked: doc(db, "users", likedUserId),
-  };
-
-  likesArray.push(likeObj);
-
-  await updateDoc(poolDocRef, {
-    likes: likesArray,
-  });
+  fetch(functionUrl, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      poolId: poolId,
+      likedBy: likedUserId,
+      liked: likingUserId,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.error("Error:", error));
 }
 
 async function isUserLikedByCurrentUser(currentUserUID, userUID, poolUID) {
-
   console.log("isUserLikedByCurrentUser envoked");
   const poolDocRef = doc(db, "pools", poolUID);
   const poolDocSnapshot = await getDoc(poolDocRef);
@@ -169,25 +169,25 @@ async function isUserLikedByCurrentUser(currentUserUID, userUID, poolUID) {
   return false;
 }
 
-async function leaveParty(userUID, partyUID){
+async function leaveParty(userUID, partyUID) {
   // Getting user object
   const userRef = doc(db, "users", userUID);
-  const user = await getDoc(userRef); 
+  const user = await getDoc(userRef);
 
-  if (!user){
+  if (!user) {
     return;
   }
 
   // Getting party pool
   const partyPool = await getPartyPoolByParty(partyUID);
-  if(!partyPool){
+  if (!partyPool) {
     return;
   }
 
   const partyPoolRef = doc(db, "pools", partyPool.uid);
 
   // removing data from user object
-  await updateDoc(userRef,{ party: null });
+  await updateDoc(userRef, { party: null });
 
   // Removing data from party pool object
   const userSex = user.data().sex;
@@ -204,20 +204,17 @@ async function leaveParty(userUID, partyUID){
   }
 
   // Removing data about user's likes
-    const likes = partyPool.likes;
-    if (likes && likes.length > 0) {
-      for (const like of likes) {
-        console.log('like :>> ', like.likedBy.id);
-        if (like.likedBy.id == userUID || like.liked.id == userUID) {
-          await updateDoc(partyPoolRef, {
-            "likes": arrayRemove(like),
-          });
-        }
+  const likes = partyPool.likes;
+  if (likes && likes.length > 0) {
+    for (const like of likes) {
+      console.log("like :>> ", like.likedBy.id);
+      if (like.likedBy.id == userUID || like.liked.id == userUID) {
+        await updateDoc(partyPoolRef, {
+          likes: arrayRemove(like),
+        });
       }
-    
+    }
   }
-
-
 }
 
 async function deleteUserAccount(user) {
@@ -227,14 +224,11 @@ async function deleteUserAccount(user) {
     // Then, remove the user's document from the Firestore 'users' collection
     const userDocRef = doc(db, "users", userId);
     await deleteDoc(userDocRef);
-    
+
     // First, delete the user's authentication account
     await deleteUser(user);
-
-  } catch (error) {
-  }
+  } catch (error) {}
 }
-
 
 export {
   addNewUser,
@@ -249,5 +243,5 @@ export {
   addLike,
   isUserLikedByCurrentUser,
   leaveParty,
-  deleteUserAccount
+  deleteUserAccount,
 };

@@ -8,8 +8,8 @@ function LikeButton({ userData, poolData }) {
 
   const handleLikeClick = async () => {
     const currentUser = getCurrentUser();
-    await addLike(currentUser.uid, userData.uid, poolData.uid);
     setDisabled(true);
+    addLike(currentUser.uid, userData.uid, poolData.uid); // TODO: I am unsure, whether we should wait for the response.
     setLiked(true);
   };
 
