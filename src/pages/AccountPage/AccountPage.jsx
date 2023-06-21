@@ -11,10 +11,13 @@ function AccountPage() {
   const [overlay, setOverlay] = useState(null);
   const navigate = useNavigate();
   return (
-    <div className="h-screen w-screen flex flex-col justify-between bg-primary">
+    <div className="h-screen w-screen flex flex-col justify-between bg-background">
       {overlay}
-      <h1 className="text-6xl font-display text-peach font-bold">ACCOUNT</h1>
-
+      <header className="mt-12 flex justify-center">
+          <h1 className="text-6xl font-display text-white font-bold">
+            <span style={{ textDecoration: 'underline', textDecorationColor: '#FE6244' }}>ACCOUNT</span>
+          </h1>
+        </header>
       <HomeButton />
       <DeleteAccountButton
         onLoading={() => setOverlay(<LoadingOverlay />)}

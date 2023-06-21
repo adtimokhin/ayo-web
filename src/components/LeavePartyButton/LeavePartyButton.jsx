@@ -17,7 +17,7 @@ function LeavePartyButton(props) {
     <div className="flex justify-center items-center w-full">
       <button
         // bg-peach text-gray-900 font-bold py-3 px-6 rounded-lg border-2 border-gray-900 hover:bg-gray-900 hover:text-primary transition-all duration-300 ease-in-out font-body text-3xl
-        className="bg-secondary text-gray-300 font-bold py-3 rounded-lg border-2 border-gray-900 hover:bg-gray-900 hover:text-primary transition-all duration-300 ease-in-out font-body text-3xl w-full"
+        className="bg-white text-gray-900 font-bold py-3 rounded-lg border-2 border-secondary hover:bg-secondary hover:text-white transition-all duration-300 ease-in-out font-body text-3xl w-full"
         onClick={handleLeaveParty}
       >
         Leave the party

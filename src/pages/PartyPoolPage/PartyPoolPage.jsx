@@ -72,7 +72,7 @@ function PartyPoolPage() {
   }, [pool]);
 
   return (
-    <div className="bg-primary w-screen">
+    <div className="bg-background w-screen">
       <nav className="bg-peach py-4 fixed top-0 w-full">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between">
@@ -91,22 +91,21 @@ function PartyPoolPage() {
         </div>
       </nav>
 
-      {pool ? (
-        <div
-          className="w-full min-h-screen grid grid-cols-3 sm:space-y-10 lg:space-y-0 lg:space-x-4 pt-24"
-          id="card_holder"
-        >
-          {pool.props.children.length != 0 ? (
-            pool
+      <div className="w-full min-h-screen py-24 flex justify-center items-center">
+        {pool ? (
+          pool.props.children.length !== 0 ? (
+            <div className="max-w-6xl mx-auto grid grid-cols-2 gap-4">
+              {pool}
+            </div>
           ) : (
-            <h1 className="text-gray col-span-3 mx-auto text-center font-display font-bold text-6xl">
+            <h1 className="text-gray text-center font-display font-bold text-6xl">
               Party Pool is currently empty
             </h1>
-          )}
-        </div>
-      ) : (
-        <LoadingPage />
-      )}
+          )
+        ) : (
+          <LoadingPage />
+        )}
+      </div>
     </div>
   );
 }

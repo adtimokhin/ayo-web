@@ -53,42 +53,54 @@ function HomePage() {
   }, [message]);
 
   return (
-    <div className="h-screen flex flex-col justify-between bg-primary">
-      {message}
-      <h1 className="pt-8 text-center font-bold text-tertiary uppercase font-display text-outline text-9xl">
+    <div className="min-h-screen flex flex-col items-center bg-background">
+      <h1 className="text-9xl lg:text-9xl font-bold font-logo text-white relative mt-12">
         AYO
+        <span className="underline" style={{ bottom: '5px' }}></span>
       </h1>
-
-      {userData ? (
-        userData?.party ? (
-          <div className="space-y-12">
-            <ViewPartyPoolButton />
-            <LeavePartyButton
-              userUID={userData.uid}
-              partyUID={userData.party.id}
-              onFinish={() => {
-                setMessage(
-                  <MessageScreen
-                    onClose={() => {
-                      setMessage(null);
-                    }}
-                    message={"You left the party"}
-                  />
-                );
-              }}
-              onLoad={() => {
-                setMessage(<LoadingOverlay />);
-              }}
-            />
-          </div>
+      <div className="flex flex-col justify-center items-center flex-grow pb-8">
+        {userData ? (
+          userData?.party ? (
+            <div className="space-y-7">
+              <div className="flex flex-col items-center">
+                <ViewPartyPoolButton />
+              </div>
+              <div className="flex flex-col items-center">
+                <LeavePartyButton
+                  userUID={userData.uid}
+                  partyUID={userData.party.id}
+                  onFinish={() => {
+                    setMessage(
+                      <MessageScreen
+                        onClose={() => {
+                          setMessage(null);
+                        }}
+                        message={"You left the party"}
+                      />
+                    );
+                  }}
+                  onLoad={() => {
+                    setMessage(<LoadingOverlay />);
+                  }}
+                />
+              </div>
+              <div className="flex flex-col items-center">
+                <ViewAccountButton />
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-12">
+              <JoinPartyButton />
+              <ViewAccountButton />
+            </div>
+          )
         ) : (
-          <JoinPartyButton />
-        )
-      ) : (
-        <LoadingPage />
-      )}
-      <ViewAccountButton />
-      <SignOutButton />
+          <LoadingPage />
+        )}
+      </div>
+      <div className="flex justify-center pb-8">
+        <SignOutButton />
+      </div>
     </div>
   );
 }

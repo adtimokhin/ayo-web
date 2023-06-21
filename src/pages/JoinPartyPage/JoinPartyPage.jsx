@@ -194,59 +194,62 @@ function JoinPartyPage() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen bg-primary">
+    <div className="min-h-screen flex flex-col items-center bg-background">
       {message}
-      <h1 className="text-5xl font-extrabold text-peach mb-8 font-display ">
-        Scan party QR
+      <h1 className="text-5xl font-bold text-white mb-20 relative mt-20">
+      <span style={{ textDecoration: 'underline', textDecorationColor: '#FE6244' }}>
+      Scan QR
+        </span>
       </h1>
-
-      {displayQR ? (
-        <QRReader
-          onLoad={() => {
-            setMessage(<LoadingOverlay />);
-          }}
-          onError={(message) => {
-            stopVideo();
-            setMessage(
-              <ErrorMessageScreen
-                message={message}
-                onClose={() => {
-                  navigate(`${homeDirectory}/login`);
-                }}
-              />
-            );
-          }}
-          user={user}
-          videoRef={videoRef}
-          stopVideo={stopVideo}
-        />
-      ) : (
-        <button
-          className="bg-peach text-primary font-body font-medium text-4xl rounded-md p-4"
-          id="enable_qr_button"
-          onClick={() => {
-            setDisplayQR(true);
-          }}
-        >
-          Begin Scanning
-        </button>
-      )}
-
-      {/* Stop recording button */}
-      {displayQR && (
-        <button
-          className="bg-peach text-primary font-body font-medium text-4xl rounded-md p-4 mt-12"
-          id="stop-button"
-          onClick={() => {
-            stopVideo();
-            navigate(`${homeDirectory}/home`);
-          }}
-        >
-          Return Back
-        </button>
-      )}
+  
+      <div className="flex flex-col items-center justify-center flex-grow">
+        {displayQR ? (
+          <QRReader
+            onLoad={() => {
+              setMessage(<LoadingOverlay />);
+            }}
+            onError={(message) => {
+              stopVideo();
+              setMessage(
+                <ErrorMessageScreen
+                  message={message}
+                  onClose={() => {
+                    navigate(`${homeDirectory}/login`);
+                  }}
+                />
+              );
+            }}
+            user={user}
+            videoRef={videoRef}
+            stopVideo={stopVideo}
+          />
+        ) : (
+          <button
+            className="mt-30 -mt-12 bg-white text-gray-900 font-bold rounded-lg border-2 border-secondary hover:bg-secondary hover:text-white transition-all duration-300 ease-in-out py-3 px-6 font-body text-3xl"
+            id="enable_qr_button"
+            onClick={() => {
+              setDisplayQR(true);
+            }}
+          >
+            Begin Scanning
+          </button>
+        )}
+  
+        {/* Stop recording button */}
+        {displayQR && (
+          <button
+            className="mt-32 -mt-4 bg-white text-gray-900 font-bold rounded-lg border-2 border-secondary hover:bg-secondary hover:text-white transition-all duration-300 ease-in-out py-3 px-6 font-body text-3xl"
+            id="stop-button"
+            onClick={() => {
+              stopVideo();
+              navigate(`${homeDirectory}/home`);
+            }}
+          >
+            Return Back
+          </button>
+        )}
+      </div>
     </div>
   );
-}
-
+          }
 export default JoinPartyPage;

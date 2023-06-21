@@ -8,24 +8,35 @@ function LoginPage(props) {
   const onError = props.onError;
   const [overlayScreen, setOverlayScreen] = useState(null);
   return (
-    <div className="RegisterPage flex flex-col w-screen bg-[#030415] justify-center items-center min-h-screen">
+    <div className="RegisterPage flex flex-col items-center justify-start w-screen h-screen bg-background">
       {overlayScreen}
-      <h1 className="text-9xl font-display text-[#e98787] font-bold">LOGIN!</h1>
-      <LoginForm
-        onError={(msg) => {
-          setOverlayScreen(
-            <ErrorMessageScreen
-              message={msg}
-              onClose={() => {
-                setOverlayScreen(null);
-              }}
-            />
-          );
-        }}
-        onLoading = {()=>{setOverlayScreen(<LoadingOverlay/>)}}
-      />
+      <div className="mt-10">
+        <h1 className="text-6xl font-display text-white font-bold pt-12">
+          <span style={{ textDecoration: 'underline', textDecorationColor: '#FE6244' }}>
+            LOGIN
+          </span>
+        </h1>
+      </div>
+      <div className="flex flex-col items-center mt-15">
+        <LoginForm
+          onError={(msg) => {
+            setOverlayScreen(
+              <ErrorMessageScreen
+                message={msg}
+                onClose={() => {
+                  setOverlayScreen(null);
+                }}
+              />
+            );
+          }}
+          onLoading={() => {
+            setOverlayScreen(<LoadingOverlay />);
+          }}
+        />
+      </div>
     </div>
   );
 }
 
 export default LoginPage;
+

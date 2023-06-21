@@ -4,16 +4,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#1A237E",
-        secondary: "#FF1744",
-        gray: "#DADEED",
-        peach: "#f7a399",
+        primary: "#D2001A",
+        secondary: "#FE6244",
+        red: "#FFDEB9",
+        orange1: "#FE6244",
+        background: "#5F29C7",
+        yellow: "#FFDE00",
       },
       fontFamily: {
         display: ["Lalezar", "cursive"],
+        logo: ["Artifex Cf"],
         body: [ "Mulish","Montserrat Black", "sans-serif"],
       },
     },
   },
   plugins: [],
 };
+
+// To run the website localy type: npm run dev

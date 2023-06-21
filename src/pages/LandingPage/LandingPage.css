@@ -1,50 +1,67 @@
+@font-face {
+  font-family: 'Artifex CF';
+  src: url('fonts/ArtifexCFBold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 .text-gradient {
-  background: linear-gradient(to left, #ff2b2b, #f5aeae);
+  background: linear-gradient(to right, #FE6244, #FE6244);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 h1 {
-  font-family: "Lalezar", cursive;
+  font-family: "Artifex CF", cursive;
+}
+
+h1:hover {
+  color: #352bfe;
+  transition: 30s;
 }
 
 h2{
-    font-family: "Mulish","Montserrat Black", "sans-serif"
+    font-family: "Lalezar";
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .navigation-button {
-  background: linear-gradient(to right, transparent 30%, #f5aeae 110%);
+  background: #FE6244;
   align-items: center;
   justify-content: space-between;
   display: flex;
   height: fit-content;
-  border-radius: 10px;
+  border-radius: 50px;
   padding: 3%;
   width: 79vw;
-  color: #dadeed;
+  color: #FFFF;
   transition: all 0.5s ease-in-out;
   margin-bottom: 10rem;
-}
-
-.navigation-button:hover {
-  /* color: #2B5AFE; */
+  max-width: 35rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .navigation-button:active {
-    color: #92a4e5;
+    color: #bfff00;
   }
 
 .button-text {
-  font-family: "Lalezar", cursive, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  padding-left: 2%;
+  font-family: "Lalezar";
   font-weight: 500;
   font-size: 4rem;
+  text-align: center;
 }
 
 .arrow {
-  border: solid #030415;
+  border: solid background;
   background-clip: padding-box;
   /* border-image-source: linear-gradient(to left, #743ad5, #d53a9d); */
   border-width: 0 10px 11px 0;
@@ -57,4 +74,13 @@ h2{
 .right {
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
+}
+
+.underline {
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  bottom: -3px; /* Adjust the negative value to move the line down */
+  height: 5px; /* Adjust the thickness as desired */
+  background-color: #FE6244; /* Set the color of the line */
 }
