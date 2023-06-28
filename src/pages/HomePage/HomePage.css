@@ -3,3 +3,18 @@
     -webkit-text-stroke: 3px  #E0E0E0;
     -webkit-text-fill-color:#FF1744;
   }
+
+.text-center {
+    display: flex;
+      justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .underline {
+    position: relative;
+    bottom: 5px;
+    text-decoration: underline;
+  }
+
+  

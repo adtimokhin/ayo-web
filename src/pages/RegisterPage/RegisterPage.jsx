@@ -12,10 +12,10 @@ function RegisterPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="RegisterPage flex flex-col w-screen bg-primary justify-center items-center h-fit">
+    <div className="RegisterPage flex flex-col w-screen bg-background justify-center items-center h-fit">
       {overlayScreen}
-      <h1 className="text-6xl font-display text-white font-bold py-12">
-        REGISTER!
+      <h1 className="text-6xl font-display text-white font-bold pt-5 pb-5">
+      <span style={{textDecoration: 'underline', textDecorationColor: '#FE6244'}}>REGISTER!</span>
       </h1>
       <RegisterForm
         onError={(msg) => {

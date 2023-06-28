@@ -79,37 +79,40 @@ function RegisterForm(props) {
   return (
     <div className="RegisterForm">
       <form
-        className="space-y-4 bg-white rounded-lg p-10 flex flex-col items-center my-16"
+        className="rounded-lg py-5 px-10 flex flex-col items-center mt-4 lg:w-fit w-full text-[#f5aeae] font-body"
+        style={{ border: "6px solid #4E22A1" }} //4E22A1
         onSubmit={handleSubmit}
       >
         <div className="w-full">
-          <label htmlFor="email" className="block font-medium mb-2">
+          <label htmlFor="email" className="block font-medium mb-2 text-[#FFFFFF]">
             Email:
           </label>
           <input
             type="email"
             id="email"
             name="email"
+            placeholder="Email"
             required
-            className="w-full p-2 mb-6 text-gray-700 border-b-2 border-gray-300 focus:outline-none focus:border-secondary"
+            className="w-full p-2 mb-6 text-white border-b-2 border-[#FE6244] focus:outline-none focus:border-secondary bg-[transparent]"
           />
         </div>
         <div className="w-full">
-          <label htmlFor="password" className="block font-medium mb-2">
+          <label htmlFor="password" className="block font-medium mb-2 text-[#FFFFFF]">
             Password:
           </label>
           <input
             type="password"
             id="password"
             name="password"
+            placeholder="******"
             required
-            className="w-full p-2 mb-6 text-gray-700 border-b-2 border-gray-300 focus:outline-none focus:border-secondary"
+            className="w-full p-2 mb-6 text-white border-b-2 border-[#FE6244] focus:outline-none focus:border-secondary bg-[transparent]"
           />
         </div>
         <div className="w-full">
           <label
             htmlFor="verificationPassword"
-            className="block font-medium mb-2"
+            className="block font-medium mb-2 text-[#FFFFFF]"
           >
             Verify Password:
           </label>
@@ -117,44 +120,46 @@ function RegisterForm(props) {
             type="password"
             id="verificationPassword"
             name="verificationPassword"
+            placeholder="******"
             required
-            className="w-full p-2 mb-6 text-gray-700 border-b-2 border-gray-300 focus:outline-none focus:border-secondary"
+            className="w-full p-2 mb-6 text-white border-b-2 border-[#FE6244] focus:outline-none focus:border-secondary bg-[transparent]"
           />
         </div>
         <div className="w-full">
-          <label htmlFor="sex" className="block font-medium mb-2">
+          <label htmlFor="sex" className="block font-medium mb-2 text-[#FFFFFF]">
             Sex:
           </label>
           <select
             id="sex"
             name="sex"
+            placeholder="M/F/NB"
             required
-            className="w-full p-2 mb-6 text-gray-700 border-b-2 border-gray-300 focus:outline-none focus:border-secondary"
+            className="w-full p-2 mb-6 text-white border-b-2 border-[#FE6244] focus:outline-none focus:border-secondary bg-[transparent]"
           >
             <option value=""></option>
             <option value="male">Male</option>
             <option value="female">Female</option>
-            <option value="other">Other</option>
+            <option value="other">NB</option>
           </select>
         </div>
         <div className="w-full">
-          <label htmlFor="sexOfInterest" className="block font-medium mb-2">
+          <label htmlFor="sexOfInterest" className="block font-medium mb-2 text-[#FFFFFF]">
             Sex of Interest:
           </label>
           <select
             id="sexOfInterest"
             name="sexOfInterest"
             required
-            className="w-full p-2 mb-6 text-gray-700 border-b-2 border-gray-300 focus:outline-none focus:border-secondary"
+            className="w-full p-2 mb-6 text-white border-b-2 border-[#FE6244] focus:outline-none focus:border-secondary bg-[transparent]"
           >
             <option value=""></option>
             <option value="male">Male</option>
             <option value="female">Female</option>
-            <option value="other">Other</option>
+            <option value="other">Everyone</option>
           </select>
         </div>
         <div className="w-full">
-          <label htmlFor="picture" className="block font-medium mb-2">
+          <label htmlFor="picture" className="block font-medium mb-2 text-[#FFFFFF]">
             Picture:
           </label>
           <input
@@ -162,18 +167,20 @@ function RegisterForm(props) {
             id="picture"
             name="picture"
             accept="image/*"
-            className="w-full p-2 mb-6 text-gray-700 border-b-2 border-gray-300 focus:outline-none focus:border-secondary"
+            className="w-full p-2 mb-2 text-white border-b-2 border-[#FE6244] focus:outline-none focus:border-secondary bg-[transparent]"
           />
         </div>
         <button
+          className="bg-[#FE6244] hover:bg-[#FE6244] active:bg-[#FE6244] text-white py-1 px-3 font-bold text-xl rounded-full focus:outline-none focus:shadow-outline"
           type="submit"
-          className="bg-secondary text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          onClick={handleSubmit}
+          style={{ borderRadius: '50px' }}
         >
           Register
         </button>
-        <div className="text-sm text-blue-500 hover:underline cursor-pointer">
+        <div className="text-sm text-white hover:underline cursor-pointer">
           <Link to={`${homeDirectory}/login`} className="">
-            Already have an account? Login
+            Already have an account? <span style={{ color: '#FE6244', textDecoration: 'underline'}}>Login!</span>
           </Link>
         </div>
       </form>

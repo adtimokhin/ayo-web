@@ -2,33 +2,32 @@ import { Link } from "react-router-dom";
 import { homeDirectory } from "../../util/routing";
 import "./LandingPage.css";
 
+
 const LandingPage = () => {
   return (
-    <div className="flex flex-col justify-center items-center bg-[#030415]">
+    <div className="min-h-screen flex flex-col bg-background">
       <div
-        className="m-4 sm:mb-[25vh] mt-[7rem] lg:mb-[50vh]"
-        id="title--holder flex flex-col justify-center items-center"
+        className="absolute inset-0 flex flex-col justify-center items-center"
+        id="title--holder"
       >
-        <h1 className="lg:text-[16rem] text-[10rem] font-bold text-gray font-display">
-          AYO!
+        <h1 className="text-9xl lg:text-9xl font-bold font-logo text-white relative">
+          AYO
+          <span className="underline" style={{ bottom: '5px' }}></span>
         </h1>
-        <h2 className="lg:text-4xl text-3xl font-thin mb-8 text-gray">
-          Scan. Match. <span className="text-gradient">Act.</span>
-        </h2>
-      </div>
 
-      <div
-        className="flex flex-col justify-center items-center py-12 sm:py-4"
-        id="button--holder"
-      >
-        <div className="button-container">
-          <Link to={`${homeDirectory}/login`} className="navigation-button">
-            <p className="button-text">Begin!</p>
-            <i className="arrow right"></i>
-          </Link>
-        </div>
-      </div>
+       <h2 className="text-lg md:text-2xl lg:text-3xl font-thin mb-8 text-white flex justify-center items-center">
+          <span className="flex items-center">Scan. Match.</span>&nbsp;<span className="text-gradient font-bold flex items-center">Act.</span>
+       </h2>
+      <div className="button-container">
+        <Link
+          to={`${homeDirectory}/login`}
+          className="navigation-button"
+        >
+        <p className="text-base md:text-2xl lg:text-3xl button-text">Join the party!</p>
+      </Link>
     </div>
+</div>
+</div>
   );
 };
 
