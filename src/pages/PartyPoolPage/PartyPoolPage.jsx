@@ -28,14 +28,16 @@ const getPool = async (userData) => {
     if (personData.sexOfInterest === userData.sex) {
       // Only showing if there is a match
       // TODO: If user already has liked that user do not show them again.
-      const alreadyLiked = await isUserLikedByCurrentUser(
-        userData.uid,
-        userId,
-        pool.uid
-      );
-      if (!alreadyLiked) {
-        peopleToShow.push(<PersonCard userData={personData} poolData={pool} />);
-      }
+      // const alreadyLiked = await isUserLikedByCurrentUser(
+      //   userData.uid,
+      //   userId,
+      //   pool.uid
+      // );
+      // if (!alreadyLiked) {
+      //   peopleToShow.push(<PersonCard userData={personData} poolData={pool} />);
+      // }
+      // FIXME: Hiding people that were not yet liked does not work!
+      peopleToShow.push(<PersonCard userData={personData} poolData={pool} />);
     }
   }
 
