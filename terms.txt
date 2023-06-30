@@ -1,0 +1,61 @@
+TERMS AND CONDITIONS
+
+1. Introduction
+Welcome to "AYO", a service provided by Aleksandr Timokhin and Artem Rukovishnikov. Please read these Terms and Conditions before using our service. By using our service, you agree to comply with these Terms and Conditions.
+
+2. Services
+"AYO" provides a platform for organizers of party events to host their events online. Party attendees create accounts, join parties by scanning a QR code provided by the party organizer, and gain access to a pool of attendees based on their gender preferences. If mutual interests are indicated, users will be notified via email of a match.
+
+3. Account Information
+To utilize our service, party attendees must provide their email, password, profile image, their gender, and the gender of those they wish to meet at parties. Party organizers must provide their contact email, the name of the venue, its geolocation, and the event's start and end times.
+
+4. Data Collection and Storage
+We collect and store the data provided by users and organizers on Firebase, a secure cloud service. All data related to parties will be deleted after the party ends, and access to profile images in the notification emails will expire after 24 hours.
+
+5. Communication
+By creating an account, users agree to receive communication from us via the email address ayo-notifications@gmail.com. Users may unsubscribe from these emails by following the provided link in the email.
+
+6. Image Use and Distribution
+By creating an account, users agree to the distribution of their profile image by the founders of AYO to other users on the platform. Including via e-mail sent from ayo-notifications@gmail.com to any registered user on the platform.
+
+7. Age Restriction
+Users must be 21 years or older to create an account and use our services.
+
+8. Service Limitations
+While we strive for optimal performance, there may be instances where the website may not function as intended. In such cases, users should report the issue by sending an email to ayo-notifications@gmail.com with the subject line "Website Problem".
+
+9. Service Updates
+Any updates or changes to the service will be communicated to users via the email address ayo-notifications@gmail.com. This email will include a link to the updated Terms of Use.
+
+10. Rights to the Service
+The website rights belong to Aleksandr Timokhin, and the idea and services provided are jointly owned by Aleksandr Timokhin and Artem Rukovishnikov.
+
+11. Termination Policy
+To be determined based on the business model.
+
+12. Governing Law and Dispute Resolution
+To be determined by the country/state of operation.
+
+13. Third-Party Links or Services
+To be determined as per future collaborations with other services.
+
+14. Fee
+The services provided by AYO are currently free of charge.
+
+15. Types of Correspondence from AYO
+By agreeing to these terms and conditions, you consent to receiving correspondence from AYO through the email address ayo-notifications@gmail.com. We strive to respect your inbox and only send necessary emails. Our correspondence can be divided into four categories:
+
+Match Emails: These are emails notifying you about the matches you've made during an event. When two users express mutual interest, both will receive an email with the profile picture of their match.
+
+Marketing Emails: As part of our commitment to continually improve our service, we might invite you to participate in interview sessions. These sessions provide us with insights and ideas for further improving our product, AYO.
+
+Reply Emails: When you reach out to us at ayo-notifications@gmail.com, we'll respond via the same channel. The correspondence might be with one of the founders of AYO or another representative, and can take any form necessary to address your questions or concerns.
+
+Service Emails: These emails provide information about the state of your account or the website. They may include updates, changes, or any relevant information regarding your user account or our service as a whole.
+
+You can unsubscribe from marketing emails at any time by following the link provided in each email. Please note that you cannot unsubscribe from service emails, reply emails, and match emails as they are integral to the service we provide.
+
+16. Unsubscribing and Account Deletion
+By unsubscribing from our email service, you are also choosing to discontinue your user account with AYO. This action will result in the automatic deletion of your account from our system. Please be aware that this process is irreversible, and you will lose all account information and history. If you wish to use our services again in the future, you would need to create a new account.
+
+By using our service, you agree to these Terms and Conditions. If you do not agree with these terms, please do not access or use our service. We reserve the right to modify these terms at any time, so please review it frequently.
