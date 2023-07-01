@@ -238,7 +238,7 @@ function JoinPartyPage() {
         {/* Stop recording button */}
         {displayQR && (
           <button
-            className="mt-32 -mt-4 bg-white text-gray-900 font-bold rounded-lg border-2 border-secondary hover:bg-secondary hover:text-white transition-all duration-300 ease-in-out py-3 px-6 font-body text-3xl"
+            className="mt-32 bg-white text-gray-900 font-bold rounded-lg border-2 border-secondary hover:bg-secondary hover:text-white transition-all duration-300 ease-in-out py-3 px-6 font-body text-3xl"
             id="stop-button"
             onClick={() => {
               stopVideo();
@@ -250,6 +250,7 @@ function JoinPartyPage() {
         )}
       </div>
     </div>
-  );
-          }
+  );  
+}
+
 export default JoinPartyPage;

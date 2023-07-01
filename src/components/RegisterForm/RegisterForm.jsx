@@ -16,7 +16,8 @@ const validateEmail = (email) => {
 };
 
 function RegisterForm(props) {
-  
+  const [isDisabled, setIsDisabled] = useState(true);
+
   const onError = props.onError;
   const onLoading = props.onLoading;
   const onSuccess = props.onSuccess;
@@ -26,15 +27,25 @@ function RegisterForm(props) {
 
     onLoading();
 
-    const email = event.target.elements.email.value;
-    const password = event.target.elements.password.value;
+    const email = event.target.elements.email?.value;
+    const password = event.target.elements.password?.value;
     const verificationPassword =
-      event.target.elements.verificationPassword.value;
-    const sex = event.target.elements.sex.value;
-    const sexOfInterest = event.target.elements.sexOfInterest.value;
-    const picture = event.target.elements.picture.files[0];
+      event.target.elements.verificationPassword?.value;
+    const sex = event.target.elements.sex?.value;
+    const sexOfInterest = event.target.elements.sexOfInterest?.value;
+    const picture = event.target.elements.picture?.files[0];
 
-    console.log(picture);
+    if (
+      !email ||
+      !password ||
+      !verificationPassword ||
+      !sex ||
+      !sexOfInterest ||
+      !picture
+    ) {
+      onError("Please fill in all of the required fields");
+      return;
+    }
 
     // Check email format
     if (!validateEmail(email)) {
@@ -77,14 +88,17 @@ function RegisterForm(props) {
   };
 
   return (
-    <div className="RegisterForm">
+    <div className="pb-20">
       <form
         className="rounded-lg py-5 px-10 flex flex-col items-center mt-4 lg:w-fit w-full text-[#f5aeae] font-body"
         style={{ border: "6px solid #4E22A1" }} //4E22A1
         onSubmit={handleSubmit}
       >
         <div className="w-full">
-          <label htmlFor="email" className="block font-medium mb-2 text-[#FFFFFF]">
+          <label
+            htmlFor="email"
+            className="block font-medium mb-2 text-[#FFFFFF]"
+          >
             Email:
           </label>
           <input
@@ -97,7 +111,10 @@ function RegisterForm(props) {
           />
         </div>
         <div className="w-full">
-          <label htmlFor="password" className="block font-medium mb-2 text-[#FFFFFF]">
+          <label
+            htmlFor="password"
+            className="block font-medium mb-2 text-[#FFFFFF]"
+          >
             Password:
           </label>
           <input
@@ -126,7 +143,10 @@ function RegisterForm(props) {
           />
         </div>
         <div className="w-full">
-          <label htmlFor="sex" className="block font-medium mb-2 text-[#FFFFFF]">
+          <label
+            htmlFor="sex"
+            className="block font-medium mb-2 text-[#FFFFFF]"
+          >
             Sex:
           </label>
           <select
@@ -143,7 +163,10 @@ function RegisterForm(props) {
           </select>
         </div>
         <div className="w-full">
-          <label htmlFor="sexOfInterest" className="block font-medium mb-2 text-[#FFFFFF]">
+          <label
+            htmlFor="sexOfInterest"
+            className="block font-medium mb-2 text-[#FFFFFF]"
+          >
             Sex of Interest:
           </label>
           <select
@@ -159,7 +182,10 @@ function RegisterForm(props) {
           </select>
         </div>
         <div className="w-full">
-          <label htmlFor="picture" className="block font-medium mb-2 text-[#FFFFFF]">
+          <label
+            htmlFor="picture"
+            className="block font-medium mb-2 text-[#FFFFFF]"
+          >
             Picture:
           </label>
           <input
@@ -170,17 +196,42 @@ function RegisterForm(props) {
             className="w-full p-2 mb-2 text-white border-b-2 border-[#FE6244] focus:outline-none focus:border-secondary bg-[transparent]"
           />
         </div>
+
+        <div className="w-full h-fit flex py-4">
+          <button
+            onClick={() => {
+              setIsDisabled(!isDisabled);
+            }}
+          >
+            {isDisabled ? (
+              <div className="h-[20px] w-[20px] bg-white" />
+            ) : (
+              <div className="h-[20px] w-[20px] bg-secondary" />
+            )}
+          </button>
+          <p className="w-fit ml-3 font-semibold font-body">
+            Click to agree with{" "}
+            <a href="https://github.com/adtimokhin/ayo-web/blob/main/terms.txt" target="_blank" className="text-secondary" style={{ textDecoration: "underline" }}>
+              terms and conditions
+            </a>
+          </p>
+        </div>
+
         <button
-          className="bg-[#FE6244] hover:bg-[#FE6244] active:bg-[#FE6244] text-white py-1 px-3 font-bold text-xl rounded-full focus:outline-none focus:shadow-outline"
+          className="bg-[#FE6244] hover:bg-[#FE6244] active:bg-[#FE6244] text-white py-1 px-3 font-bold text-xl rounded-full focus:outline-none focus:shadow-outline disabled:bg-secondary/30 disabled:text-white/30"
           type="submit"
           onClick={handleSubmit}
-          style={{ borderRadius: '50px' }}
+          disabled={isDisabled}
+          style={{ borderRadius: "50px" }}
         >
           Register
         </button>
         <div className="text-sm text-white hover:underline cursor-pointer">
           <Link to={`${homeDirectory}/login`} className="">
-            Already have an account? <span style={{ color: '#FE6244', textDecoration: 'underline'}}>Login!</span>
+            Already have an account?{" "}
+            <span style={{ color: "#FE6244", textDecoration: "underline" }}>
+              Login!
+            </span>
           </Link>
         </div>
       </form>

@@ -54,6 +54,7 @@ function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-background">
+      {message}
       <h1 className="text-9xl lg:text-9xl font-bold font-logo text-white relative mt-12">
         AYO
         <span className="underline" style={{ bottom: '5px' }}></span>

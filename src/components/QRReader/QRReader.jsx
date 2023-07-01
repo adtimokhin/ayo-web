@@ -131,4 +131,4 @@ function QRReader({ onError, onLoad, user, videoRef, stopVideo }) {
   );
 }
 
-export default QRReader;
+export default QRReader;  
