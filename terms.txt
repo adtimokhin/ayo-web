@@ -45,13 +45,7 @@ The services provided by AYO are currently free of charge.
 15. Types of Correspondence from AYO
 By agreeing to these terms and conditions, you consent to receiving correspondence from AYO through the email address ayo.notifications@gmail.com. We strive to respect your inbox and only send necessary emails. Our correspondence can be divided into four categories:
 
-Match Emails: These are emails notifying you about the matches you've made during an event. When two users express mutual interest, both will receive an email with the profile picture of their match.
-
-Marketing Emails: As part of our commitment to continually improve our service, we might invite you to participate in interview sessions. These sessions provide us with insights and ideas for further improving our product, AYO.
-
-Reply Emails: When you reach out to us at ayo.notifications@gmail.com, we'll respond via the same channel. The correspondence might be with one of the founders of AYO or another representative, and can take any form necessary to address your questions or concerns.
-
-Service Emails: These emails provide information about the state of your account or the website. They may include updates, changes, or any relevant information regarding your user account or our service as a whole.
+Transactional Emails: These are emails notifying you about the matches you've made during an event. When two users express mutual interest, both will receive an email with the profile picture of their match. These emails are sent as a result of a user action on the platform.
 
 You can unsubscribe from marketing emails at any time by following the link provided in each email. Please note that you cannot unsubscribe from service emails, reply emails, and match emails as they are integral to the service we provide.
 
