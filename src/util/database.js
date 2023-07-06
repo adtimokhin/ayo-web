@@ -93,7 +93,11 @@ async function addUserToPartyPool(partyPool, user) {
   const partyPoolRef = doc(db, "pools", partyPool.uid);
   const userRef = doc(db, "users", user.uid);
 
-  if (user.sex == "male") {
+  if (user.sex == "other" || user.sexOfInterest == "other") {
+    await updateDoc(partyPoolRef, {
+      "pool.other": arrayUnion(userRef),
+    });
+  } else if (user.sex == "male") {
     await updateDoc(partyPoolRef, {
       "pool.male": arrayUnion(userRef),
     });
@@ -117,9 +121,16 @@ async function getUserRefsFromPoolDoc(partyPoolId, sexOfInterest) {
     } else if (sexOfInterest === "female") {
       // Return the list of female user references
       return poolData.female;
-    } else {
-      return [];
+    } else if (sexOfInterest === "other") {
+      return poolData.other;
+    } else if (sexOfInterest === "all") {
+      let dataToReturn = [];
+      dataToReturn.push(...poolData.male);
+      dataToReturn.push(...poolData.female);
+      dataToReturn.push(...poolData.other);
+      return dataToReturn;
     }
+    return [];
   } else {
     return [];
   }
@@ -191,9 +202,13 @@ async function leaveParty(userUID, partyUID) {
 
   // Removing data from party pool object
   const userSex = user.data().sex;
-
+  const userSexOfInterest = user.data().sexOfInterest;
   // Removing data about user's presence at the party
-  if (userSex == "male") {
+  if (userSex == "other" || userSexOfInterest == "other") {
+    await updateDoc(partyPoolRef, {
+      "pool.other": arrayRemove(userRef),
+    });
+  } else if (userSex == "male") {
     await updateDoc(partyPoolRef, {
       "pool.male": arrayRemove(userRef),
     });

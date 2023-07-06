@@ -18,27 +18,68 @@ const getPool = async (userData) => {
   const party = refToDoc(partyRef);
   const partyId = party.id;
   const pool = await getPartyPoolByParty(partyId);
-  const people = await getUserRefsFromPoolDoc(pool.uid, userData.sexOfInterest);
+  let people = [];
+  if (userData.sexOfInterest != "other") {
+    people = await getUserRefsFromPoolDoc(pool.uid, userData.sexOfInterest);
+    people.push(...(await getUserRefsFromPoolDoc(pool.uid, "other")));
+  } else {
+    people = await getUserRefsFromPoolDoc(pool.uid, "all");
+  }
+
   let peopleToShow = [];
 
+  // for (let i = 0; i < people.length; i++) {
+  //   const userRef = people[i];
+  //   const userId = userRef.id;
+  //   const personData = await getUserData(userId);
+  //   if (
+  //     personData.sexOfInterest === userData.sex ||
+  //     personData.sexOfInterest == "other"
+  //   ) {
+  //     // Only showing if there is a match
+  //     // TODO: If user already has liked that user do not show them again.
+  //     // const alreadyLiked = await isUserLikedByCurrentUser(
+  //     //   userData.uid,
+  //     //   userId,
+  //     //   pool.uid
+  //     // );
+  //     // if (!alreadyLiked) {
+  //     //   peopleToShow.push(<PersonCard userData={personData} poolData={pool} />);
+  //     // }
+  //     // FIXME: Hiding people that were not yet liked does not work!
+  //     peopleToShow.push(<PersonCard userData={personData} poolData={pool} />);
+  //   }
+  // }
   for (let i = 0; i < people.length; i++) {
     const userRef = people[i];
     const userId = userRef.id;
-    const personData = await getUserData(userId);
-    if (personData.sexOfInterest === userData.sex) {
-      // Only showing if there is a match
-      // TODO: If user already has liked that user do not show them again.
-      // const alreadyLiked = await isUserLikedByCurrentUser(
-      //   userData.uid,
-      //   userId,
-      //   pool.uid
-      // );
-      // if (!alreadyLiked) {
-      //   peopleToShow.push(<PersonCard userData={personData} poolData={pool} />);
-      // }
-      // FIXME: Hiding people that were not yet liked does not work!
-      peopleToShow.push(<PersonCard userData={personData} poolData={pool} />);
+
+    if (userId === userData.uid) {
+      continue;
     }
+
+    const personData = await getUserData(userId);
+    // Only showing if there is a match
+    // TODO: If user already has liked that user do not show them again.
+    // const alreadyLiked = await isUserLikedByCurrentUser(
+    //   userData.uid,
+    //   userId,
+    //   pool.uid
+    // );
+    // if (!alreadyLiked) {
+    //   peopleToShow.push(<PersonCard userData={personData} poolData={pool} />);
+    // }
+    // FIXME: Hiding people that were not yet liked does not work!
+
+    if (
+      personData.sexOfInterest === userData.sex ||
+      userData.sex === "other" ||
+      personData.sexOfInterest === "other"
+    ) {
+       peopleToShow.push(<PersonCard userData={personData} poolData={pool} />);
+    }
+
+   
   }
 
   return peopleToShow;
