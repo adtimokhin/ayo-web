@@ -20,7 +20,7 @@ const LandingPage = () => {
        </h2>
       <div className="button-container">
         <Link
-          to={`${homeDirectory}/login`}
+          to={`${homeDirectory}/register`}
           className="navigation-button"
         >
         <p className="text-base md:text-2xl lg:text-3xl button-text">Join the party!</p>

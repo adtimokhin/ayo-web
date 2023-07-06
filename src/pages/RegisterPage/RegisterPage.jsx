@@ -15,10 +15,18 @@ function RegisterPage() {
     <div className="RegisterPage flex flex-col w-screen bg-background justify-center items-center h-fit">
       {overlayScreen}
       <h1 className="text-6xl font-display text-white font-bold pt-5 pb-5">
-      <span style={{textDecoration: 'underline', textDecorationColor: '#FE6244'}}>REGISTER!</span>
+        <span
+          style={{
+            textDecoration: "underline",
+            textDecorationColor: "#FE6244",
+          }}
+        >
+          REGISTER!
+        </span>
       </h1>
       <RegisterForm
         onError={(msg) => {
+          setOverlayScreen(null);
           setOverlayScreen(
             <ErrorMessageScreen
               message={msg}
@@ -28,15 +36,16 @@ function RegisterPage() {
             />
           );
         }}
-
         onLoading={() => {
           setOverlayScreen(<LoadingOverlay />);
         }}
-
+        stopLoading={() => {
+          setOverlayScreen(null);
+        }}
         onSuccess={() => {
           setOverlayScreen(
-            <MessageScreen
-              message={"You were added to the database! Check your email."}
+            <ErrorMessageScreen
+              message={"Nice! Now you have to verify your email. Check your email"}
               onClose={() => {
                 navigate(`${homeDirectory}/home`);
               }}

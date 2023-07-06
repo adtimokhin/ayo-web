@@ -20,6 +20,7 @@ function RegisterForm(props) {
 
   const onError = props.onError;
   const onLoading = props.onLoading;
+  const stopLoading = props.stopLoading;
   const onSuccess = props.onSuccess;
 
   const handleSubmit = async (event) => {
@@ -73,7 +74,7 @@ function RegisterForm(props) {
       console.log("User registered successfully:", user);
       console.log("Snapshot registered successfully:", userDB);
 
-      await signOutUser();
+      // await signOutUser();
       onSuccess();
     } catch (error) {
       console.error("Error registering user:", error);
@@ -81,7 +82,7 @@ function RegisterForm(props) {
         onError("Email already in use");
         // setError("Email already in use");
       } else {
-        onError("Unknown error!");
+        onError(error);
         // setError("Unknown error!");
       }
     }
@@ -147,7 +148,7 @@ function RegisterForm(props) {
             htmlFor="sex"
             className="block font-medium mb-2 text-[#FFFFFF]"
           >
-            Sex:
+            What sex do you want to be associated with:
           </label>
           <select
             id="sex"
@@ -157,8 +158,8 @@ function RegisterForm(props) {
             className="w-full p-2 mb-6 text-white border-b-2 border-[#FE6244] focus:outline-none focus:border-secondary bg-[transparent]"
           >
             <option value=""></option>
-            <option value="male">Male</option>
             <option value="female">Female</option>
+            <option value="male">Male</option>
             <option value="other">NB</option>
           </select>
         </div>
@@ -167,7 +168,7 @@ function RegisterForm(props) {
             htmlFor="sexOfInterest"
             className="block font-medium mb-2 text-[#FFFFFF]"
           >
-            Sex of Interest:
+           Whose profiles do you want to see:
           </label>
           <select
             id="sexOfInterest"
@@ -176,8 +177,8 @@ function RegisterForm(props) {
             className="w-full p-2 mb-6 text-white border-b-2 border-[#FE6244] focus:outline-none focus:border-secondary bg-[transparent]"
           >
             <option value=""></option>
-            <option value="male">Male</option>
             <option value="female">Female</option>
+            <option value="male">Male</option>
             <option value="other">Everyone</option>
           </select>
         </div>
