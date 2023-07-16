@@ -2,28 +2,47 @@ import { getCurrentUser } from "../../util/auth";
 import { addLike } from "../../util/database";
 import { useState } from "react";
 
-function LikeButton({ userData, poolData }) {
+function LikeButton({ userData }) {
   const [disabled, setDisabled] = useState(false);
   const [liked, setLiked] = useState(false);
 
-  const handleLikeClick = async () => {
+  const stopProp = (event) => {
+    event.stopPropagation();
+  };
+
+  const handleLikeClick = async (event) => {
+    stopProp(event); // Fix: Call the stopProp function with the event parameter
     const currentUser = getCurrentUser();
-    await addLike(currentUser.uid, userData.uid, poolData.uid);
+    await addLike(currentUser.uid, userData.uid);
     setDisabled(true);
     setLiked(true);
   };
 
   return (
     <button
-      className={`flex py-2 px-4 rounded-lg h-fit w-[94%] text-center ${
-        liked ? "bg-gray-500 cursor-default" : "bg-[#ffa7a7] hover:bg-blue-700"
-      } text-[#172aff] font-semibold text-xl`}
-      onClick={handleLikeClick}
+      className={`flex items-center justify-center bg-transparent border-none outline-none ${
+        liked ? "text-blue-500" : "text-red-500 hover:text-blue-500"
+      }`}
+      onClick={(event) => handleLikeClick(event)} // Оберните handleLikeClick в анонимную функцию
       disabled={disabled || liked}
     >
-      <p className="w-full">
-      {liked ? "Liked" : "Like"}
-      </p>
+  
+      <span
+        role="img"
+        aria-label="Heart"
+        style={{
+          fontSize: "24px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "30px",
+          height: "30px",
+          borderRadius: "50%",
+          background: "white",
+        }}
+      >
+        {liked ? "💙" : "❤️"}
+      </span>
     </button>
   );
 }

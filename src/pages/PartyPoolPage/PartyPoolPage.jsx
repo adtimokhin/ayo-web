@@ -19,22 +19,20 @@ const getPool = async (userData) => {
   const partyId = party.id;
   const pool = await getPartyPoolByParty(partyId);
   const people = await getUserRefsFromPoolDoc(pool.uid, userData.sexOfInterest);
-  let peopleToShow = [];
+  const peopleToShow = [];
 
   for (let i = 0; i < people.length; i++) {
     const userRef = people[i];
     const userId = userRef.id;
     const personData = await getUserData(userId);
     if (personData.sexOfInterest === userData.sex) {
-      // Only showing if there is a match
-      // TODO: If user already has liked that user do not show them again.
       const alreadyLiked = await isUserLikedByCurrentUser(
         userData.uid,
         userId,
         pool.uid
       );
       if (!alreadyLiked) {
-        peopleToShow.push(<PersonCard userData={personData} poolData={pool} />);
+        peopleToShow.push(<PersonCard key={userId} userData={personData} poolData={pool} />);
       }
     }
   }
@@ -57,7 +55,7 @@ function PartyPoolPage() {
         if (currentUser.emailVerified) {
           const user = await getUserData(currentUser.uid);
           setUserData(user);
-          setPool(<>{await getPool(user)}</>);
+          setPool(await getPool(user));
         } else {
           navigate(`${homeDirectory}/login`);
         }
@@ -66,45 +64,51 @@ function PartyPoolPage() {
       }
     };
 
-    if (pool == null) {
+    if (pool === null) {
       fetchUserData();
     }
   }, [pool]);
 
   return (
-    <div className="bg-background w-screen">
+    <div className="bg-background min-h-screen">
       <nav className="bg-peach py-4 fixed top-0 w-full">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between">
-            <div className="text-primary font-bold text-3xl hover:text-gray-600">
-              AYO | Party Pool
-            </div>
-            <div>
+          <div>
               <Link
                 to={`${homeDirectory}/home`}
-                className="text-primary hover:text-secondary px-3 text-3xl font-bold font-body"
+                className="bg-white text-gray-900 font-bold px-2 rounded-lg border-2 border-secondary hover:bg-secondary hover:text-white transition-all duration-300 ease-in-out font-body text-3xl w-full"
               >
-                HOME
+                X
               </Link>
+            </div>
+            <div className="text-white font-bold text-3xl">
+            <span style={{ textDecoration: 'underline', textDecorationColor: '#FE6244' }}>AYO | Party Pool</span>
             </div>
           </div>
         </div>
       </nav>
 
-      <div className="w-full min-h-screen py-24 flex justify-center items-center">
-        {pool ? (
-          pool.props.children.length !== 0 ? (
-            <div className="max-w-6xl mx-auto grid grid-cols-2 gap-4">
-              {pool}
+      <div className="bg-background py-24">
+        <div className="max-w-6xl mx-auto px-4">
+          {pool ? (
+            <div className="grid grid-cols-2 gap-4">
+              {pool.length !== 0 ? (
+                pool.map((item, index) => (
+                  <div key={index} className="grid-item">
+                    {item}
+                  </div>
+                ))
+              ) : (
+                <h1 className="text-gray col-span-2 text-center font-display font-bold text-6xl">
+                  Party Pool is currently empty
+                </h1>
+              )}
             </div>
           ) : (
-            <h1 className="text-gray text-center font-display font-bold text-6xl">
-              Party Pool is currently empty
-            </h1>
-          )
-        ) : (
-          <LoadingPage />
-        )}
+            <LoadingPage />
+          )}
+        </div>
       </div>
     </div>
   );

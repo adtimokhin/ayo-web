@@ -16,11 +16,6 @@ h1 {
   font-family: "Artifex CF", cursive;
 }
 
-h1:hover {
-  color: #352bfe;
-  transition: 30s;
-}
-
 h2{
     font-family: "Lalezar";
 }
