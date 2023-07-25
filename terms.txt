@@ -9,6 +9,8 @@ Welcome to "AYO", a service provided by Aleksandr Timokhin and Artem Rukovishnik
 3. Account Information
 To utilize our service, party attendees must provide their email, password, profile image, their gender, and the gender of those they wish to meet at parties. Party organizers must provide their contact email, the name of the venue, its geolocation, and the event's start and end times.
 
+You may need to create an account to use certain features of the App. You are responsible for the accuracy of your account information, including your email address and profile information. You are also responsible for maintaining the confidentiality of your account password.
+
 4. Data Collection and Storage
 We collect and store the data provided by users and organizers on Firebase, a secure cloud service. All data related to parties will be deleted after the party ends, and access to profile images in the notification emails will expire after 24 hours.
 
@@ -51,5 +53,14 @@ You can unsubscribe from marketing emails at any time by following the link prov
 
 16. Unsubscribing and Account Deletion
 By unsubscribing from our email service, you are also choosing to discontinue your user account with AYO. This action will result in the automatic deletion of your account from our system. Please be aware that this process is irreversible, and you will lose all account information and history. If you wish to use our services again in the future, you would need to create a new account.
+
+17. Changes to the App and Terms
+We reserve the right to modify, suspend, or discontinue the App at any time without notice to you. We may also revise these Terms from time to time. By continuing to use the App after such revisions are in effect, you accept and agree to the changes.
+
+18. Limitation of Liability
+AYO does not guarantee the intentions of any user or the safety of any event or party listed on the App. AYO uses Firebase to store user information and disclaims responsibility for the security of this data storage.
+
+
+
 
 By using our service, you agree to these Terms and Conditions. If you do not agree with these terms, please do not access or use our service. We reserve the right to modify these terms at any time, so please review it frequently.
