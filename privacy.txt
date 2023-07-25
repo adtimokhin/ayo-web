@@ -1,0 +1,46 @@
+Privacy Policy for AYO
+Effective Date: 25th July, 2023
+
+This Privacy Policy describes how your personal information is collected, used, and shared when you use AYO (the "App") developed by Aleksandr Timokhin.
+
+1. Personal Information We Collect
+When you use the App, we collect the following types of information from you:
+Contact Information: This includes your email address, which you provide to us when you register an account on the App.
+Profile Information: This includes your gender and your preferences about who you want to show your profile to, the parties you're currently at, the time you joined the party, and your profile picture.
+User Interactions: This includes data about who you have liked and who you were liked by, and whether you have matched with other users.
+Device and Usage Information: When you use the App, we automatically collect certain information about your device and your use of the App. This includes your IP address, browser type, device type, the pages of the App that you visit, the time spent on those pages, and other usage statistics.
+Location Information: With your consent, the App may access your device's geolocation data. We use this data to zoom in on a part of the map to show the parties around you. We do not store or pass this data to Firebase.
+Photo Library and Camera Access: With your consent, the App may access your device's photo library and camera, which are used to set and update your profile picture.
+Information From Third Parties: We may collect information about you from third parties, such as Firebase, which we use to collect and store user information.
+
+2. How We Use Your Information
+We use the information we collect from you to provide, improve, and promote the App. This includes using your information to:
+Provide and maintain the App;
+Facilitate user interaction and matching;
+Understand and analyze how you use the App;
+Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the App, and for marketing and promotional purposes;
+Send you push notifications (if you have opted-in to receive them);
+Find and prevent fraud.
+
+3. Sharing Your Information
+Your profile picture and information about whether you have matched with a given user will be shared with other users who are at the same party as you. All other information is used by the AYO team for analysis and will not be shared with other users.
+We may share your information with third parties under the following circumstances:
+With your consent;
+With service providers who assist us in operating the App, such as Firebase;
+In connection with a merger or sale of all or a portion of our business;
+If we believe in good faith that disclosure is necessary to comply with applicable law, protect the rights, property or safety of us or others, or investigate fraud.
+
+4. Permissions
+The app may request permissions to access your current location, photo library, and camera. The location is used to zoom in on the part of the map to show the parties around you, but is not stored or passed to Firebase. The photo library and camera permissions are used to set and update your profile picture.
+
+5. Security
+We use commercially reasonable safeguards to help keep the information collected through the App secure and take reasonable steps to verify your identity before granting you access to your account. However, we cannot ensure the security of any information you transmit to us or guarantee that information on the App may not be accessed, disclosed, altered, or destroyed.
+
+6. Your Rights
+You have certain rights in relation to the personal information we hold about you. These may include the right to access, correct, delete, or restrict the use of your personal information, as well as the right to object to the processing of your personal information.
+
+7. Changes to this Privacy Policy
+We may modify or update this Privacy Policy from time to time, so please review it periodically. We may provide you with notice of material changes to the Privacy Policy as appropriate under the circumstances.
+
+8. Contact Us
+If you have any questions about this Privacy Policy, please contact us at ayo.notifications@gmail.com.
